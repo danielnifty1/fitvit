@@ -4,8 +4,8 @@ import { ref } from "vue";
 import Buttons from "../components/Buttons.vue";
 let open = ref(false)
 let Links = [
-  { name: "Home", link: "#" },
-  { name: "Services", link: "#" },
+  { name: "Home", link: "/" },
+  { name: "Services", link: "test" },
   { name: "About", link: "" },
   { name: "Contact", link: "#" },
 ];
@@ -34,7 +34,7 @@ function Menuopen(){
     <ul class="bg-gray-900 opacity-90 z-40 md:flex md:items-center md:px-0 px-6 md:pb-0 pb-10 md:static absolute bg-[#202020] md:w-auto w-full top-14 duration-700 ease-in" :class="[open ? 'right-0':'right-[100%]']">
       <hr class="mt-10">
       <li class="md:mx-4 md:my-0 my-6" v-for="link in Links" :key="link.name">
-        <a href="{{link.link }}" class="text-xl hover:text-green-500">{{
+        <a :href=link.link  class="text-xl hover:text-green-500">{{
           link.name
         }}</a>
       </li>
