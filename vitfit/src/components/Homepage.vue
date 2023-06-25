@@ -1,17 +1,17 @@
-<script setup lang="ts">
-// import { ref } from 'vue'
-import buttons from "../components/Buttons.vue";
-import { Collapse, Ripple, initTE } from "tw-elements";
+  <script setup lang="ts">
+  import { ref } from 'vue'
+  import buttons from "../components/Buttons.vue";
+  import { Collapse, Ripple, initTE } from "tw-elements";
 
-initTE({ Collapse, Ripple });
-// let open = ref(false)
-let Links = [
-  { name: "PERSONAL TRAINER", bimg: "/img/slide-1.jpg", btn: "MORE" },
-  { name: "FREE WORKOUTs", bimg: "/img/bg-programs.jpg", btn: "MORE" },
-  { name: "CROSSFIT", bimg: "/img/trainer-1.jpg", btn: "MORE" },
-  { name: "MARTIAL ARTS", bimg: "/img/trainer-2.jpg", btn: "MORE" },
-];
-</script>
+  initTE({ Collapse, Ripple });
+  // let open = ref(false)
+  let Links = [
+    { name: "PERSONAL TRAINER", bimg: "/img/slide-1.jpg", btn: "MORE" },
+    { name: "FREE WORKOUTs", bimg: "/img/bg-programs.jpg", btn: "MORE" },
+    { name: "CROSSFIT", bimg: "/img/trainer-1.jpg", btn: "MORE" },
+    { name: "MARTIAL ARTS", bimg: "/img/trainer-2.jpg", btn: "MORE" },
+  ];
+  </script>
 
 <template>
   <div
@@ -22,7 +22,7 @@ let Links = [
     "
   >
     <div class="flex place-content-center">
-      <h2 class="text-4xl md:text-6xl font-bold py-10">
+      <h2 class="text-4xl md:text-6xl font-bold py-10 mt-10 md:mt-0">
         <span class="text-white">PUSH</span
         ><span class="text-yellow-400"> YOURSELF</span>
       </h2>
@@ -145,7 +145,7 @@ let Links = [
       <div
         v-for="link in Links"
         :key="link.name"
-        class="trainers relative border-4 border-transparent p-10 w-full h-[300px] md:h-full space-y-10 hover:border-red-700 duration-1000 hover:border-4"
+        class="trainers relative border-4 border-transparent p-10 w-full h-[300px] md:h-full space-y-10 hover:border-red-700 duration-1000 hover:border-4 z-10"
       >
         <div
           class="md:w-full w-[250px] absolute md:h-full h-48 left-0 top-0 border h-[290px]"
@@ -245,7 +245,7 @@ let Links = [
           and we are here to support and motivate you to reach your goals.
         </p>
 
-        <p class="hover:px-12 cursor-pointer font-bold text-red-700">
+        <p class="hover:translate-x-1 duration-300 cursor-pointer font-bold text-red-700">
           Book a Session <span class="fa fa-arrow-right"></span>
         </p>
         <img src="svg/effect-1.svg" class="hover:-translate-y-6 delay-100 duration-1000" />
@@ -257,7 +257,7 @@ let Links = [
     </div>
 
     <div
-      class="grid md:grid-cols-2 md:px-10 md:mt-10 md:mx-12 mx-6 pb-10 w-full"
+      class="grid md:grid-cols-2 md:px-5  pb-10 w-full"
     >
       <div class="">
         <img src="img/image-3.png" class="px-10 md:px-10" />
@@ -271,7 +271,7 @@ let Links = [
         </h4>
 
         <p
-          class="py-5 text-[#f6f6f6] text-cente leading-10 text-1xl w-11/12 md:w-full"
+          class="py-5 px-5 text-[#f6f6f6] text-cente leading-10 text-1xl w-full md:w-full"
         >
           Being accountable is one of the most important parts of ones fitness
           journey. We all know life happens and you may lose motivation. This is
@@ -281,7 +281,7 @@ let Links = [
           our programs to make sure you are accountable at all times
         </p>
 
-        <p class="px hover:px-12 cursor-pointer font-bold text-red-700">
+        <p class="hover:translate-x-1 duration-300 cursor-pointer px-5 font-bold text-red-700">
           Book a Session <span class="fa fa-arrow-right"></span>
         </p>
       </div>

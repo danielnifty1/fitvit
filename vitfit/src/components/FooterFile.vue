@@ -1,18 +1,18 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import Buttons from "../components/Buttons.vue";
+// import Buttons from "../components/Buttons.vue";
 let open = ref(false)
 let Links = [
-  { name: "Home", link: "#" },
-  { name: "Services", link: "#" },
-  { name: "About", link: "" },
-  { name: "Contact", link: "#" },
+  { name: "Home", link: "home" },
+  { name: "Programs", link: "services" },
+  { name: "About", link: "about" },
+  { name: "Contact", link: "contact" },
+
+
 ];
 
-function Menuopen(){
-  open.value=!open.value
-}
+
 </script>
 <template>
      <div class="h-[200px] bg-[#111827] w-full grid justify-items-center p-10 ">
@@ -27,12 +27,12 @@ function Menuopen(){
         <ul class="bg-gray-900 opacity-90 z-40 md:flex md:items-center md:px-0 px-6 md:pb-0 pb-10 md:static absolute bg-[#202020] md:w-auto w-full top-14 duration-700 ease-in" :class="[open ? 'right-0':'right-[100%]']">
       <hr class="mt-10">
       <li class="md:mx-4 md:my-0 my-6" v-for="link in Links" :key="link.name">
-        <a href="{{link.link }}" class="text-xl text-white hover:text-green-500">{{
-          link.name
-        }}</a>
+        <router-link :to="link.link" class="text-xl text-white hover:text-green-500 ">{{
+            link.name
+          }}</router-link>
       </li>
       </ul>
-      <div class="space-x-10 ">
+      <div class="space-x-10 py-5    ">
       <span
         class="fa fa-facebook text-gray-500 hover:text-blue-500 px-2"
       ></span>
@@ -45,8 +45,10 @@ function Menuopen(){
     </div>
 
 </div>
+
+
      <div
-    class="bg-gray-900 opacity-90 text-orange-900 font-bold text-1xl justify-between  en  px-5 items-center py-2.5  sm:block sm:flex w-full"
+    class="bg-gray-900 opacity-90 text-orange-900 font-bold  w-full"
   >
     <div class="flex justify-between px-2 space-x-4 text-xs">
       <span class="text-orange-500 font-bold text-1xl">
@@ -74,3 +76,16 @@ function Menuopen(){
   </div>
 <hr class="w-94 mx-20 bg-red-900">
 </template>
+
+<style scoped>
+.activepage{
+    padding-bottom: 8px;
+  border-bottom: 2px solid red;
+  margin-bottom: 20px;
+  transition-delay: 100ms;
+  transition-duration: 1000ms;
+}
+.activepage:hover{
+  color: red;
+}
+</style>
