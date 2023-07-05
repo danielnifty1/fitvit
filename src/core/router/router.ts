@@ -18,7 +18,7 @@ const routes: Array<RouteRecordRaw> = [
   { path: "/", redirect: "/home" },
   { path: "/home", name: "page.home", components: {default:Homepage, NavBar: HeaderFile,FooterPage: FooterFile } },
   { path: "/custome", name: "Custome Coaching", components: {default:aboutpage, NavBar: HeaderFile,banner: BreadCrumb,FooterPage: FooterFile } },
-  { path: "/servicesg",name:"Programs", components: { default: Servicespage, NavBar: HeaderFile, banner: BreadCrumb, FooterPage: FooterFile, } },
+  { path: "/services",name:"Programs", components: { default: Servicespage, NavBar: HeaderFile, banner: BreadCrumb, FooterPage: FooterFile, } },
   { path: "/contact",name:"Contact Us", components: { default: contactpage,NavBar: HeaderFile, banner: BreadCrumb, FooterPage: FooterFile, } },
   { path: "/secure/signup", components: { default: Regform, NavBar: HeaderFile, FooterPage: FooterFile,buttons:buttons } },
   //  { path: "/login",name:"Progrhams", components: { default: Servicespage, NavBar: HeaderFile, banner: BreadCrumb, FooterPage: FooterFile, } },
