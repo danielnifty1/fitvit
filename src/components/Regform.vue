@@ -1,24 +1,140 @@
 <script setup lang="ts">
-// import { reactive} from 'vue'
-import buttons from "../components/Buttons.vue";
+import { reactive, ref, computed } from "vue";
+// import { notify } from "@kyvg/vue3-notification";
 
-// import { Collapse, Ripple, initTE } from "tw-elements";
-
-// document.getElementById('name').disabled = true  ;
+import useVuelidate from "@vuelidate/core";
 
 
-const checkbox = document.getElementById(
-  'terms',
-) as HTMLInputElement | null;
+import { useAuth } from "../composables/auth.composable";
+import {
+  required,
+  email,
+  helpers,
+  minLength,
+ 
+  sameAs,
+} from "@vuelidate/validators";
+import { useAuthStore } from "../core/store/modules/store";
 
-if (checkbox != null) {
-  // ✅ Set checkbox checked
-  // checkbox.checked = true;
-  console.log("yes");
+// instantiate router
 
-  // ✅ Set checkbox unchecked
-  // checkbox.checked = false;
-}
+// initialize route
+
+// initialize store
+const store = useAuthStore();
+const disabled = ref(false);
+// define user info
+
+const userInfo = reactive({
+  FirstName: "",
+  LastName: "",
+  email: "",
+  linked: "",
+  instagram: "",
+  goals: "",
+  coached: false,
+  dob: "",
+  password: "",
+  confirmPassword: "",
+  // email: "",
+});
+
+const loading = ref(false);
+const validateName = () => {
+  return /^[a-zA-Z]+$/.test(userInfo.FirstName);
+};
+
+// validations rule
+const rules = computed(() => {
+  return {
+    email: {
+      required: helpers.withMessage("Email address is required", required),
+      email: helpers.withMessage("Must be a valid email", email),
+    },
+    goals: {
+      required: helpers.withMessage("Secret question  is required", required),
+  
+    },
+    coached: {
+      required: helpers.withMessage("Secret answer  is required", required),
+    },
+
+  
+    dob: {
+      required: helpers.withMessage("Bitcoin address  is required", required),
+    },
+    FirstName: {
+      required: helpers.withMessage("First Name is required", required),
+      validateFirstName: helpers.withMessage(
+        "First name can only include alphabets",
+        validateName
+      ),
+      min: helpers.withMessage(
+        "First name cannot be less than 2 characters",
+        minLength(2)
+      ),
+    },
+    LastName: {
+      required: helpers.withMessage("First Name is required", required),
+      validateFirstName: helpers.withMessage(
+        "First name can only include alphabets",
+        validateName
+      ),
+      min: helpers.withMessage(
+        "First name cannot be less than 2 characters",
+        minLength(2)
+      ),
+    },
+
+    password: {
+      required: helpers.withMessage("Password is required", required),
+      min: helpers.withMessage(
+        "Password cannot be less than 8 characters",
+        minLength(8)
+      ),
+    },
+
+    confirmPassword: {
+      required: helpers.withMessage("Confirm Password is required", required),
+      sameAs: helpers.withMessage(
+        "Passwords do not match",
+        sameAs(userInfo.password)
+      ),
+    },
+  };
+});
+
+const v$ = useVuelidate(rules as any, userInfo);
+//define register method
+const submitForm = async (): Promise<void> => {
+  // check if form is formattted correctly
+  const isFormCorrect = await v$.value.$validate();
+  if (isFormCorrect == true) {
+    disabled.value = true;
+    const data = {
+      email: v$.value.email.$model as string,
+      password: v$.value.password.$model as string,
+      first_name: v$.value.FirstName.$model as string,
+      last_name: v$.value.LastName.$model as string,
+      goals: v$.value.goals.$model as string,
+      coached: v$.value.coached.$model as boolean,
+      dob: v$.value.dob.$model as string,
+      linked: userInfo.linked,
+      instagram: userInfo.instagram
+    };
+
+    const [error, success] = await useAuth(store.userRegister(data), loading);
+    if (success || error) {
+      disabled.value = false;
+    }
+    if (success.value !== "") {
+      //   redirect to the signin page
+      setTimeout(() => {
+        window.location.href = "/verify-email";
+      }, 3000);
+    }
+  }
+};
 </script>
 <template>
   <section class="">
@@ -48,20 +164,52 @@ if (checkbox != null) {
           >
             kindly fill the below form to get started with your custom coaching
           </p>
-          <form class="space-y-4 md:space-y-6" action="#">
-            <div>
-              <label
-                for="name"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Full name</label
-              >
-              <input
-                type=""
-                name="name"
-                id="name"
-                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="your name"
-              />
+          <form
+            @submit.prevent="submitForm"
+            id="form"
+            action="pro"
+            method="post"
+            class="space-y-4 md:space-y-6"
+          >
+           
+
+            <div class="grid grid-rows-1 grid-flow-col gap-4">
+              <div>
+                <label
+                  for="Linked"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >First Name</label
+                >
+                <input
+                  type=""
+                  name="FirstName"
+                  id="FirstName"
+                  placeholder="First name"
+                  v-model="userInfo.FirstName"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+                <div v-if="v$.FirstName.$error" class="text-danger">
+                  {{ "* " + v$.FirstName.$errors[0].$message }}
+                </div>
+              </div>
+              <div>
+                <label
+                  for="instagram"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                  >Last Name</label
+                >
+                <input
+                  type=""
+                  name="lastName"
+                  id="lastname"
+                  v-model="userInfo.LastName"
+                  placeholder="last name"
+                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                />
+                <div v-if="v$.LastName.$error" class="text-danger">
+                  {{ "* " + v$.LastName.$errors[0].$message }}
+                </div>
+              </div>
             </div>
 
             <div>
@@ -74,9 +222,13 @@ if (checkbox != null) {
                 type="email"
                 name=""
                 id="email"
+                v-model="userInfo.email"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="your@email.com"
               />
+              <div v-if="v$.email.$error" class="text-danger">
+                {{ "* " + v$.email.$errors[0].$message }}
+              </div>
             </div>
 
             <div class="grid grid-rows-1 grid-flow-col gap-4">
@@ -91,8 +243,10 @@ if (checkbox != null) {
                   name="Linked"
                   id="Linked"
                   placeholder="Linked Handle"
+                  v-model="userInfo.linked"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
+              
               </div>
               <div>
                 <label
@@ -104,10 +258,12 @@ if (checkbox != null) {
                   type=""
                   name="instagram"
                   id="instagram"
+                  v-model="userInfo.instagram"
                   placeholder="Instagram Handle"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
-              </div>
+               
+                </div>
             </div>
 
             <div>
@@ -121,9 +277,14 @@ if (checkbox != null) {
               <textarea
                 name="goal"
                 id="goal"
+                v-model="userInfo.goals"
                 placeholder="What are your short, medium and long term goals for your physique (3 month, 6 month, 12 month)"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               ></textarea>
+
+              <div v-if="v$.goals.$error" class="text-danger">
+                {{ "* " + v$.goals.$errors[0].$message }}
+              </div>
             </div>
 
             <div class="md:grid md:grid-rows-1 grid-flow-col gap-4">
@@ -137,13 +298,19 @@ if (checkbox != null) {
                 <select
                   name="couching"
                   id="couching"
+                  v-model ="userInfo.coached"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 >
-                  <option>Yes</option>
-                  <option>No</option>
+                  <option :value=true>Yes</option>
+                  <option :value=false>No</option>
                 </select>
+                <div v-if="v$.coached.$error" class="text-danger">
+                  {{ "* " + v$.coached.$errors[0].$message }}
+                </div>
               </div>
-              <div class="py-5">
+
+
+              <div class="">
                 <label
                   for="instagram"
                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
@@ -151,12 +318,18 @@ if (checkbox != null) {
                 >
                 <input
                   type="date"
-                  name="instagram"
-                  id="instagram"
+                  name="dob"
+                  id="dob"
+                  v-model="userInfo.dob"
                   placeholder="Instagram Handle"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
+                <div v-if="v$.dob.$error" class="text-danger">
+                  {{ "* " + v$.dob.$errors[0].$message }}
+                </div>
               </div>
+
+
             </div>
 
             <div class="grid grid-rows-1 grid-flow-col gap-4">
@@ -170,9 +343,13 @@ if (checkbox != null) {
                   type="password"
                   name="password"
                   id="password"
+                  v-model="userInfo.password"
                   placeholder="••••••••"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
+                <div v-if="v$.password.$error" class="text-danger">
+                  {{ "* " + v$.password.$errors[0].$message }}
+                </div>
               </div>
               <div>
                 <label
@@ -185,8 +362,16 @@ if (checkbox != null) {
                   name="confirm-password"
                   id="confirm-password"
                   placeholder="••••••••"
-                  class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                />
+                  v-model="userInfo.confirmPassword"
+                
+                class="bg-gray-50 border border-gray-300 text-gray-900
+                sm:text-sm rounded-lg focus:ring-primary-600
+                focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700
+                dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
+                dark:focus:ring-blue-500 dark:focus:border-blue-500" />
+                <div v-if="v$.confirmPassword.$error" class="text-danger">
+                  {{ "* " + v$.confirmPassword.$errors[0].$message }}
+                </div>
               </div>
             </div>
 
@@ -212,9 +397,11 @@ if (checkbox != null) {
                 >
               </div>
             </div>
-            <buttons
-              class="w-full text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-              >Signup</buttons
+            <button
+              class="w-full text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800
+              bg-red-700 hover:bg-red-500 hover:translate-x-1 duration-300 font-sm text-white rounded py-1.5  px-4
+              "
+              >REGISTER</button
             >
 
             <p class="text-sm font-light text-gray-500 dark:text-gray-400">

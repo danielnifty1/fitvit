@@ -1,26 +1,84 @@
 <script setup lang="ts">
-import VuePhoneNumberInput from 'vue-phone-number-input';
-import 'vue-phone-number-input/dist/vue-phone-number-input.css';
-
+// import VuePhoneNumberInput from 'vue-phone-number-input';
+import {ref, } from "vue";
+import { reactive,  computed } from "vue";
 import buttons from "../components/Buttons.vue";
-import { Collapse, Ripple, initTE } from "tw-elements";
+import { useAuthStore } from "../core/store";
+import useVuelidate from "@vuelidate/core";
+const authStore = useAuthStore();
 
-// import Vue from "vue";
-// import VueCountryCode from "vue-country-code";
+const disabled = ref(false);
+import { useAuth } from "../composables/auth.composable";
+import {
+  required,
+  helpers,
 
-// Vue.use(VueCountryCode);
+} from "@vuelidate/validators";
 
-// Vue.computed
-// Vue.component('vue-phone-number-input', VuePhoneNumberInput);
+const userInfo = reactive({
+  session_type: "",
+  duration: "",
+  title: "",
+  doa: "",
+ 
 
-initTE({ Collapse, Ripple });
-// let open = ref(false)
+  // email: "",
+});
+// const disabled = ref(false);
+const loading = ref(false);
 
-// var currentDate = new Date();
-            // console.log(currentDate);
+const store = useAuthStore();
+const rules = computed(() => {
+  return {
+    session_type: {
+      required: helpers.withMessage("Email address is required", required),
+     
+    },
+    duration: {
+      required: helpers.withMessage("Secret question  is required", required),
+  
+    },
+    title: {
+      required: helpers.withMessage("Secret answer  is required", required),
+    },
 
-            // var currentDateWithFormat = new Date().toJSON().slice(0,10).replace(/-/g,'/');
-            // console.log(currentDateWithFormat); 
+  
+    doa: {
+      required: helpers.withMessage("Bitcoin address  is required", required),
+    }
+  };
+});
+
+const v$ = useVuelidate(rules as any, userInfo);
+//define register method
+const submitForm = async (): Promise<void> => {
+  // check if form is formattted correctly
+  const isFormCorrect = await v$.value.$validate();
+  if (isFormCorrect == true) {
+    disabled.value = true;
+    const data = {
+      session_type: v$.value.session_type.$model as string,
+      duration: v$.value.Duration.$model as string,
+    title: v$.value.Title.$model as string,
+      doa: v$.value.Doa.$model as string,
+      
+    
+    };
+
+    const [error, success] = await useAuth(store.userAppointment(data), loading);
+    if (success || error) {
+      disabled.value = false;
+    }
+    if (success.value !== "") {
+      //   redirect to the signin page
+      setTimeout(() => {
+        window.location.href = "/verify-email";
+      }, 3000);
+    }
+  }
+};
+
+
 
 let coach = [
   { icon: "Home", note: "Apply For Coaching" },
@@ -119,32 +177,46 @@ console.log(nowaday);
     </div>
    
     <div class="grid grid-cols-2 w-full h-auto p-10 space-x-5">
+      
     
       <div class="p-10 space shadow-md bg-gray-800 place-content-center rounded-2xl" style="background-image: url(./svg/effect-1-1.svg);">
-        <form class="text-white">
+
+        <h4 class="text-red-700 text-center font-bold text-4xl mb-10">Book an Appointment Today</h4>
+        <form class="text-white"  @submit.prevent="submitForm"
+            id="form"
+            action="pro"
+            method="post">
             <div class="mb-5">
                 <label for="name" class="mb-3 block text-base font-medium text-white">
-                    Full Name
+                    Session Type
                 </label>
-                <input type="text" name="name" id="name" placeholder="Full Name"
-                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+
+                <select name="name" id="name"  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" >
+                <option>Virtual</option>
+                </select>
+                <!-- <input type="text"  placeholder="Full Name"
+                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" /> -->
             </div>
             <div class="mb-5">
                 <label for="phone" class="mb-3 block text-base font-medium text-white">
-                    Phone Number
+                   Duration
                 </label>
-                <input type="text" name="phone" id="phone" placeholder="Enter your phone number"
-                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                <select name="name" id="name"  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" >
+                <option>30 minutes</option>
+                <option>1 Hour</option>
+                <option>1 Hour 30 minutes</option>
+                <option>2 Hours (max)</option>
+                </select>
             </div>
             <div class="mb-5">
                 <label for="email" class="mb-3 block text-base font-medium text-white">
-                    Email Address
+                    Title
                 </label>
-                <input type="email" name="email" id="email" placeholder="Enter your email"
+                <input type="" name="title" id="title" placeholder="Enter your title"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
             </div>
             <div class="-mx-3 flex flex-wrap">
-                <div class="w-full px-3 sm:w-1/2">
+                <div class="w-full px-3 ">
                     <div class="mb-5">
                         <label for="date" class="mb-3 block text-base font-medium text-white">
                             Date
@@ -154,7 +226,7 @@ console.log(nowaday);
                             class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
                 </div>
-                <div class="w-full px-3 sm:w-1/2">
+                <!-- <div class="w-full px-3 sm:w-1/2">
                     <div class="mb-5">
                         <label for="time" class="mb-3 block text-base font-medium text-white">
                             Time
@@ -162,16 +234,25 @@ console.log(nowaday);
                         <input type="time" name="time" id="time"
                             class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
                     </div>
-                </div>
+                </div> -->
             </div>
 
            
 
             <div>
-                <button
+                <button  v-if="authStore.isAuthenticated"
                     class="hover:shadow-form w-full rounded-md bg-[#6A64F1] hover:bg-[#423aef] duration-700 py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                    Book Appointment
+                   Book Appointment
                 </button>
+
+                <div v-else  class="hover:shadow-form w-full rounded-md bg-red-700 hover:bg-[#423aef] duration-700 py-3 px-8 text-center text-base font-semibold text-white outline-none">
+
+                
+                <Router-link to="/login" >
+                    Login First
+                  </Router-link>
+
+                </div>
             </div>
         </form>
       </div>

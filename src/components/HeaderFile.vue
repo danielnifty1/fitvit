@@ -2,11 +2,15 @@
 import { ref } from "vue";
 
 import Buttons from "../components/Buttons.vue";
+import { useAuthStore } from "../core/store";
+
+const authStore = useAuthStore();
+
 let open = ref(false);
 let Links = [
   { name: "Home", link: "home" },
   { name: "Programs", link: "services" },
-  { name: "Custome Coach", link: "custome" },
+  { name: "Custom Coach", link: "book-appointment" },
   { name: "Contact", link: "contact" },
 ];
 
@@ -35,20 +39,16 @@ function scrollFunction() {
     >
       <div class="flex items-center">
         <ul>
-        <li>
+          <li>
+            <router-link to="/" class="flex items-center">
+              <span class="py-1 px-1 mr-1">
+                <img src="/img/reh.png" class="w-20 px-2" />
+              </span>
 
-        
-        <router-link to="/"  class="flex items-center">
-
-        
-        <span class="py-1 px-1 mr-1">
-          <img src="/img/reh.png" class="w-20 px-2" />
-        </span>
-
-        <h1 class="text-4xl text-red-900 font-bold">Vit Fit</h1>
-      </router-link>
-    </li>
-  </ul>
+              <h1 class="text-4xl text-red-900 font-bold">Vit Fit</h1>
+            </router-link>
+          </li>
+        </ul>
       </div>
       <span
         @click="Menuopen()"
@@ -64,10 +64,15 @@ function scrollFunction() {
         <hr class="mt-10" />
         <li class="md:mx-4 md:my-0 my-6" v-for="link in Links" :key="link.name">
           <router-link :to="link.link">{{ link.name }}</router-link>
-          
         </li>
 
-        <Buttons> Get Started </Buttons>
+        <div class="flex space-x-3">
+          <Buttons v-if="authStore.isAuthenticated" @click="authStore.logoutUser"> Logout </Buttons>
+          <div v-else class="flex space-x-2">
+            <Buttons route="/login"> Login </Buttons>
+            <Buttons route="/signup"> Get Started </Buttons>
+          </div>
+        </div>
       </ul>
     </div>
   </div>

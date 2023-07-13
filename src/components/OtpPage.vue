@@ -1,12 +1,12 @@
 <script setup lang="ts">
-
+import buttons from "../components/Buttons.vue";
 //   import { Collapse, Ripple, initTE } from "tw-elements";
 import { reactive, ref, computed } from "vue";
 // import { notify } from "@kyvg/vue3-notification";
 import {  useRouter } from "vue-router";
 import { useAuthStore } from "../core/store/index";
 import useVuelidate from "@vuelidate/core";
-import { required, email, helpers, minLength } from "@vuelidate/validators";
+import { required, numeric, helpers } from "@vuelidate/validators";
 import { useAuth } from "../composables/auth.composable";
 // instantiate router
 
@@ -18,8 +18,7 @@ const router = useRouter();
 const store = useAuthStore();
 
 const userInfo = reactive({
-  email: "",
-  password: "",
+  otp: "",
 });
 // const message = ref("ee223ee");
 const disabled = ref(false);
@@ -27,17 +26,9 @@ const loading = ref(false);
 // validations rule
 const rules = computed(() => {
   return {
-    email: {
-      required: helpers.withMessage("Email address is required", required),
-      email: helpers.withMessage("Must be a valid email", email),
-    },
-
-    password: {
-      required: helpers.withMessage("Password is required", required),
-      min: helpers.withMessage(
-        "Password cannot be less than 8 characters",
-        minLength(8)
-      ),
+    otp: {
+      required: helpers.withMessage("OTP is required", required),
+      otp: helpers.withMessage("Must be Number", numeric),
     },
   };
 });
@@ -49,26 +40,18 @@ const submitForm = async (): Promise<void> => {
   if (isFormCorrect == true) {
     disabled.value = true;
     const data = {
-      email: v$.value.email.$model as string,
-      password: v$.value.password.$model as string,
+      otp: v$.value.otp.$model as number,
     };
     loading.value = true;
-    const [error, success] = await useAuth(store.userLogin(data), loading);
-    if (success || error) {
-      disabled.value = false;
-    }
+    const [error, success] = await useAuth(store.verifyEmail(data), loading);
     if (success.value !== "") {
       //   redirect to the signin page
       setTimeout(() => {
-        router.go(-1)
+        router.replace("/dashboard");
       }, 3000);
     }
-
-    if (error &&error.value.data && error.value.data.Error === "Your email isnt verified yet") {
-      setTimeout(() => {
-        router.replace("/verify-email");
-      }, 4000);
-      
+    if (success || error) {
+      disabled.value = false;
     }
     console.log(success.value);
     // loading.value = isLoading.value;
@@ -101,7 +84,7 @@ const submitForm = async (): Promise<void> => {
           <h1
             class="text-xl text-center font-bold leading-tight tracking-tight text-gray-900 md:text-2xl dark:text-white"
           >
-            Login
+            Verify Account
           </h1>
           <form
             @submit.prevent="submitForm"
@@ -112,50 +95,24 @@ const submitForm = async (): Promise<void> => {
           >
             <div>
               <label
-                for="email"
+                for="otp"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Your email</label
+                >Enter OTP</label
               >
               <input
-                v-model="userInfo.email"
-                type="email"
-                name="email"
-                id="email"
+                v-model="userInfo.otp"
+                type="number"
+                name="otp"
+                id="otp"
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                placeholder="name@company.com"
+                placeholder="Enter 6 digits Otp"
                 required
               />
-
-              <div v-if="v$.email.$error" class="text-danger">
-                {{ "* " + v$.email.$errors[0].$message }}
-              </div>
-            </div>
-            <div>
-              <label
-                for="password"
-                class="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-                >Password</label
-              >
-              <input
-                v-model="userInfo.password"
-                type="password"
-                name="password"
-                id="password"
-                placeholder="••••••••"
-                class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                required
-              />
-
-              <div v-if="v$.password.$error" class="text-danger">
-                {{ "* " + v$.password.$errors[0].$message }}
-              </div>
             </div>
 
-            <button
-              class="w-full text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800
-              bg-red-700 hover:bg-red-500 hover:translate-x-1 duration-300 font-sm text-white rounded py-1.5  px-4
-              "
-              >LOGIN</button
+            <buttons
+              class="w-full text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              >VERIFY</buttons
             >
 
             <p class="text-sm font-light text-gray-500 dark:text-gray-400">

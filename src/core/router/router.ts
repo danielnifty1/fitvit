@@ -1,6 +1,6 @@
 
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-
+import isAuthenticated from "../../helpers/authenticate";
 // nav components
 const HeaderFile=()=>import("../../components/HeaderFile.vue")
 const Homepage=()=>import( "../../components/Homepage.vue");
@@ -12,18 +12,19 @@ const BreadCrumb=()=>import("../../components/BreadCrumb.vue");
 const FooterFile=()=>import("../../components/FooterFile.vue");
 const Regform=()=>import("../../components/Regform.vue");
 const LoginPage=()=>import("../../components/LoginPage.vue");
+const OtpPage=()=>import("../../components/OtpPage.vue");
 
 
 const routes: Array<RouteRecordRaw> = [
   { path: "/", redirect: "/home" },
   { path: "/home", name: "page.home", components: {default:Homepage, NavBar: HeaderFile,FooterPage: FooterFile } },
-  { path: "/custome", name: "Custome Coaching", components: {default:aboutpage, NavBar: HeaderFile,banner: BreadCrumb,FooterPage: FooterFile } },
+  { path: "/book-appointment", name: "Appointment-Booking", components: {default:aboutpage, NavBar: HeaderFile,banner: BreadCrumb,FooterPage: FooterFile } },
   { path: "/services",name:"Programs", components: { default: Servicespage, NavBar: HeaderFile, banner: BreadCrumb, FooterPage: FooterFile, } },
-  { path: "/contact",name:"Contact Us", components: { default: contactpage,NavBar: HeaderFile, banner: BreadCrumb, FooterPage: FooterFile, } },
-  { path: "/secure/signup", components: { default: Regform, NavBar: HeaderFile, FooterPage: FooterFile,buttons:buttons } },
-  //  { path: "/login",name:"Progrhams", components: { default: Servicespage, NavBar: HeaderFile, banner: BreadCrumb, FooterPage: FooterFile, } },
+  { path: "/contact",name:"Contact-Us", components: { default: contactpage,NavBar: HeaderFile, banner: BreadCrumb, FooterPage: FooterFile, } },
+  { path: "/signup", components: { default: Regform, NavBar: HeaderFile, FooterPage: FooterFile,buttons:buttons } },
+   { path: "/verify-email",name:"verify", components: { default: OtpPage, NavBar: HeaderFile, FooterPage: FooterFile, } },
 
-  { path: "/secure/login", components: {default:LoginPage,NavBar:HeaderFile,FooterPage:FooterFile  }},
+  { path: "/login", components: {default:LoginPage,NavBar:HeaderFile,FooterPage:FooterFile  }},
 //   { path: "/signup", components: { default: NewAccount, banner: banner, FooterPage: FooterPage } },
 //   { path: "/register", components: { default: RegisterPage, banner: banner, FooterPage: FooterPage, } },
 
@@ -36,6 +37,7 @@ const routes: Array<RouteRecordRaw> = [
 ];
 
 const history = createWebHistory();
+const authenticate=isAuthenticated()
 const router = createRouter({
   history,
   routes,
@@ -49,17 +51,17 @@ const router = createRouter({
   linkActiveClass:'activepage',
 });
 
-// router.beforeEach((route) => {
-//   if (route.meta && route.meta.requireAuth == true) {
-//     const isAuth = authenticate();
-//     if (isAuth == true) {
-//       return;
-//     } else {
-//       return (route.path = "/auth/login");
-//     }
-//   } else {
-//     return;
-//   }
-// });
+router.beforeEach((route) => {
+  if (route.meta && route.meta.requireAuth == true) {
+ 
+    if (authenticate == true) {
+      return;
+    } else {
+      return (route.path = "/login");
+    }
+  } else {
+    return;
+  }
+});
 
 export default router;
