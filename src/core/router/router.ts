@@ -41,13 +41,13 @@ const authenticate=isAuthenticated()
 const router = createRouter({
   history,
   routes,
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    } else {
-      return { top: 0 };
-    }
-  },
+  // scrollBehavior(to, from, savedPosition) {
+  //   if (savedPosition) {
+  //     return savedPosition;
+  //   } else {
+  //     return { top: 0 };
+  //   }
+  // },
   linkActiveClass:'activepage',
 });
 
