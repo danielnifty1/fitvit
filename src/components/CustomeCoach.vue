@@ -165,23 +165,23 @@ console.log(nowaday);
     </div>
   </div>
 
-  <div class="">
+  <div class=" mt-10 md:mt-0">
     <div>
         <p class="text-center text-2xl text-white font-bold">
         Get Fit With Our Online Coach
       </p>
-      <p class="text-center font-bold text-red-900 pb-10">
+      <p class="text-center font-bold text-red-900 md:pb-10 pb-0">
         Book an Appointment Today
       </p>
 
     </div>
    
-    <div class="grid grid-cols-2 w-full h-auto p-10 space-x-5">
+    <div class="grid md:grid-cols-2 grid-cols-1 w-full h-auto p-10 space-x-5">
       
     
-      <div class="p-10 space shadow-md bg-gray-800 place-content-center rounded-2xl" style="background-image: url(./svg/effect-1-1.svg);">
+      <div class="p-2 md:p-10 space shadow-md bg-gray-800 place-content-center rounded-2xl" style="background-image: url(./svg/effect-1-1.svg);">
 
-        <h4 class="text-red-700 text-center font-bold text-4xl mb-10">Book an Appointment Today</h4>
+        <h4 class="text-red-700 text-center font-bold md:text-4xl text-1xl mb-10">Book an Appointment Today</h4>
         <form class="text-white"  @submit.prevent="submitForm"
             id="form"
             action="pro"
@@ -257,7 +257,7 @@ console.log(nowaday);
         </form>
       </div>
 
-      <div class="w-full h-auto  ">
+      <div class="w-full h-auto hidden md:block  ">
       <img src="/img/Image-1-1.png" class="w-full h-full rounded-2xl " />
     </div>
     </div>
