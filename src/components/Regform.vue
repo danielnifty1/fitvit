@@ -152,7 +152,7 @@ const submitForm = async (): Promise<void> => {
         href="#"
         class="flex items-center mb-6 text-2xl font-semibold text-gray-200 dark:text-white mt-[150px]"
       >
-        <img class="w-8 h-8 mr-2" src="/img/reh.png" alt="logo" />
+        
         Create an account
       </a>
       <div

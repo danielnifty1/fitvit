@@ -47,34 +47,7 @@ let Links = [
 </div>
 
 
-     <div
-    class="bg-gray-900 opacity-90 text-orange-900 font-bold  w-full"
-  >
-    <div class="flex justify-between px-2 space-x-4 text-xs">
-      <span class="text-orange-500 font-bold text-1xl">
-        <span class="fa fa-phone text-red-900 px-2"></span>
-        1-800-488-60402</span
-      >
-
-      <span class="bi bi-telephone text-orange-0 font-bold text-1xl"
-        ><span class="fa fa-clock-o text-red-900 px-2"></span> Mon - Fri: 8:00AM
-        - 7:00PM | Sat - Sun: Closed</span
-      >
-    </div>
-
-    <div class=" flex">
-      <span
-        class="fa fa-facebook text-gray-500 hover:text-blue-500 px-2"
-      ></span>
-      <span
-        class="fa fa-twitter text-gray-500 hover:text-green-500 px-2"
-      ></span>
-      <span
-        class="fa fa-instagram text-gray-500 hover:text-yellow-500 px-2"
-      ></span>
-    </div>
-  </div>
-<hr class="w-94 mx-20 bg-red-900">
+  
 </template>
 
 <style scoped>

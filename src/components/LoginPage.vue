@@ -89,7 +89,7 @@ const submitForm = async (): Promise<void> => {
     >
       <a
         href="#"
-        class="flex items-center mb-6 text-2xl font-semibold text-gray-200 dark:text-white mt-20"
+        class=" hidden flex items-center mb-6 text-2xl font-semibold text-gray-200 dark:text-white mt-20"
       >
         <img class="w-8 h-8 mr-2" src="/img/reh.png" alt="logo" />
         Vit Fit
