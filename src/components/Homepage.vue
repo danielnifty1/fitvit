@@ -251,11 +251,11 @@
         <p class="hover:translate-x-1 duration-300 cursor-pointer font-bold text-red-700">
           Book a Session <span class="fa fa-arrow-right"></span>
         </p>
-        <img src="svg/effect-1.svg" class="hover:-translate-y-6 delay-100 duration-1000" />
+        <img src="/svg/effect-1.svg" class="hover:-translate-y-6 delay-100 duration-1000" />
       </div>
 
       <div class="md:pl-20 mt-5 md:mt-0">
-        <img src="img/image-8.png" class="px-10 md:px-0 hover:rotate-12 duration-1000" />
+        <img src="/img/image-8.png" class="px-10 md:px-0 hover:rotate-12 duration-1000" />
       </div>
     </div>
 
@@ -263,7 +263,7 @@
       class="grid md:grid-cols-2 md:px-5  pb-10 w-full"
     >
       <div class="">
-        <img src="img/image-3.png" class="px-10 md:px-10" />
+        <img src="/img/image-3.png" class="px-10 md:px-10" />
       </div>
 
       <div class="md:px-10 w-full">
