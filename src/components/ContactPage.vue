@@ -1,6 +1,6 @@
 <script  lang="ts" setup>
 
-import {CalendarComponent} from '@syncfusion/ej2-vue-calendars';
+// import {CalendarComponent} from '@syncfusion/ej2-vue-calendars';
 // ejscalendar:new CalendarComponent;
 
  
