@@ -52,7 +52,7 @@ function scrollFunction() {
       </div>
       <span
         @click="Menuopen()"
-        class="absolute md:hidden right-6 top-3 cursor-pointer text-2xl"
+        class="absolute md:hidden right-6 sm:top-3 top-7 cursor-pointer text-2xl"
       >
         <i :class="[open ? 'fa fa-times' : 'fa fa-bars']"></i>
       </span>
