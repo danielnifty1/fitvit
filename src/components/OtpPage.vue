@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import buttons from "../components/Buttons.vue";
+// import buttons from "../components/Buttons.vue";
 //   import { Collapse, Ripple, initTE } from "tw-elements";
 import { reactive, ref, computed } from "vue";
 // import { notify } from "@kyvg/vue3-notification";
@@ -38,6 +38,8 @@ const submitForm = async (): Promise<void> => {
   // check if form is formattted correctly
   const isFormCorrect = await v$.value.$validate();
   if (isFormCorrect == true) {
+  
+
     disabled.value = true;
     const data = {
       otp: v$.value.otp.$model as number,
@@ -108,12 +110,23 @@ const submitForm = async (): Promise<void> => {
                 placeholder="Enter 6 digits Otp"
                 required
               />
+              <div v-if="v$.otp.$error" class="text-red-400">
+                  {{ "* " + v$.otp.$errors[0].$message }}
+                </div>
             </div>
 
-            <buttons
+            <div class="bg-red-700 hover:bg-red-500 hover:translate-x-1 duration-300 font-sm text-white rounded py-1.5  px-4">
+
+            
+            <button class="w-full text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
+              >VERIFY NOW
+
+            </button>
+          </div>
+            <!-- <buttons
               class="w-full text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800"
-              >VERIFY</buttons
-            >
+              >VERIFY NOW</buttons
+            > -->
 
             <p class="text-sm font-light text-gray-500 dark:text-gray-400">
               Don't have an account?
