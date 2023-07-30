@@ -37,9 +37,7 @@
       <p
         class="text-center text-white p-4 md:p-5 bg-gray-900 md:opacity-80 md:col-start-2 md:col-span-4 md:w-7/12 w-full"
       >
-        Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi
-        dolor dolor, auctor tincidunt lorem ut, venenatis dapibus mi. Nunc
-        venenatis sollicitudin nisl vel auctor.
+      Welcome to VitFit where your fitness goals become our mission. As a dedicated and experienced personal trainer, I am here to guide you on your journey towards achieving optimal health and wellness. Let's embark on this transformative path together!
       </p>
     </div>
   </div>
@@ -57,9 +55,7 @@
     <p
       class="text-center text-white md:col-start-2 md:col-span-4 md:w-7/12 w-full"
     >
-      Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi
-      dolor dolor, auctor tincidunt lorem ut, venenatis dapibus mi. Nunc
-      venenatis sollicitudin nisl vel auctor.
+   Wa are here to guide you on your journey towards achieving optimal health and wellness. lets Go!!
     </p>
   </div>
 
@@ -74,11 +70,10 @@
         <h3 class="font-bold text-white text-3xl">BODY BUILDING</h3>
 
         <p class="text-gray-400">
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam.
+          Bodybuilding is the use of progressive resistance exercise to build, control, and develop one's muscles via hypertrophy. An individual who engages in this activity is referred to as a bodybuilder
         </p>
 
-        <buttons class="ease-in duration-300"> VIEW SCHEDULE </buttons>
+        <buttons class="ease-in duration-300"> VIEW GUIDE </buttons>
       </div>
     </div>
 
@@ -96,7 +91,7 @@
           accusantium doloremque laudantium, totam rem aperiam.
         </p>
 
-        <buttons> VIEW SCHEDULE </buttons>
+        <buttons> VIEW GUIDE </buttons>
       </div>
     </div>
 
@@ -161,7 +156,7 @@
             {{ link.name }}
           </h4>
 
-          <buttons class="px-10 mx-20 py-2"> {{ link.btn }} </buttons>
+          <buttons class=" px-[38px] mx-7 py-2"> {{ link.btn }} </buttons>
         </div>
       </div>
     </div>

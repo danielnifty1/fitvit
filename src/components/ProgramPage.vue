@@ -3,14 +3,15 @@ import buttons from "../components/Buttons.vue";
 
 
 let programs = [
-  { ico: "fa fa-lock text-red-700 text-6xl text-fold text-center w-full",title:"BULKING PROGRAM ",note:"Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi dolor dolor, auctor tincidunt lorem ut, venenatis dapibus mi. Nunc venenatis sollicitudin nisl vel auctor.", bimg: "/img/slide-1.jpg", btn: "$25 TO GET STARTED",btnlink:"/bulky" },
+  { ico: "fa fa-lock text-red-700 text-6xl text-fold text-center w-full",title:"8 weeks Bulking program",note:"Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi dolor dolor, auctor tincidunt lorem ut, venenatis dapibus mi. Nunc venenatis sollicitudin nisl vel auctor.", bimg: "/img/slide-1.jpg", btn: "$39.99 TO GET STARTED",btnlink:"book-appointment/bulky" },
 
-  { ico: "fa fa-medal text-red-700 text-6xl text-fold text-center w-full",title:"LEAN BULKING PROGRAM",note:"Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi dolor dolor, auctor tincidunt lorem ut, venenatis dapibus mi. Nunc venenatis sollicitudin nisl vel auctor.", bimg: "/img/trainer-1.jpg", btn: "$35 TO GET STARTED",btnlink:"/lean" },
+  { ico: "fa fa-medal text-red-700 text-6xl text-fold text-center w-full",title:"8 weeks Lean Bulking program",note:"Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi dolor dolor, auctor tincidunt lorem ut, venenatis dapibus mi. Nunc venenatis sollicitudin nisl vel auctor.", bimg: "/img/trainer-1.jpg", btn: "$50.00 TO GET STARTED",btnlink:"book-appointment/lean" },
 
-  { ico: "fa fa-weight-hanging text-red-700 text-6xl text-fold text-center w-full",title:"30 DAY SHREDED PROGRAM ",note:"Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi dolor dolor, auctor tincidunt lorem ut, venenatis dapibus mi. Nunc venenatis sollicitudin nisl vel auctor.", bimg: "/img/slide-1.jpg", btn: "$50 TO GET STARTED",btnlink:"/shreded" },
-  { ico: "fa fa-person-running text-red-700 text-6xl text-fold text-center w-full",title:"6 WEEEKS TRANSFORMATION PROGRAM ",note:"Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi dolor dolor, auctor tincidunt lorem ut, venenatis dapibus mi. Nunc venenatis sollicitudin nisl vel auctor.", bimg: "/img/slide-1.jpg", btn: "$50 TO GET STARTED",btnlink:"/transform" },
-  { ico: "fa fa-uniform-martial-arts text-red-700 text-6xl text-fold text-center w-full",title:"30 DAY GLUTES CHALLENGE",note:"Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi dolor dolor, auctor tincidunt lorem ut, venenatis dapibus mi. Nunc venenatis sollicitudin nisl vel auctor.", bimg: "/img/slide-1.jpg", btn: "$100 TO GET STARTED",btnlink:"/glutes" },
-  { ico: "fa fa-dumbbell text-red-700 text-6xl text-fold text-center w-full",title:"WEIGHT-LOSS PROGRAM ",note:"Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi dolor dolor, auctor tincidunt lorem ut, venenatis dapibus mi. Nunc venenatis sollicitudin nisl vel auctor.", bimg: "/img/slide-1.jpg", btn: "$100 TO GET STARTED",btnlink:"weightloss" },
+  { ico: "fa fa-weight-hanging text-red-700 text-6xl text-fold text-center w-full",title:"12 weeks Glute program(Booty building) w/ Nutrition plan ",note:"Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi dolor dolor, auctor tincidunt lorem ut, venenatis dapibus mi. Nunc venenatis sollicitudin nisl vel auctor.", bimg: "/img/slide-1.jpg", btn: "$49.99 TO GET STARTED",btnlink:"/shreded" },
+  { ico: "fa fa-person-running text-red-700 text-6xl text-fold text-center w-full",title:"60 days shredded program w/ Nutrition plan ",note:"Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi dolor dolor, auctor tincidunt lorem ut, venenatis dapibus mi. Nunc venenatis sollicitudin nisl vel auctor.", bimg: "/img/slide-1.jpg", btn: "$69.99 TO GET STARTED",btnlink:"book-appointment/transform" },
+
+  { ico: "fa fa-uniform-martial-arts text-red-700 text-6xl text-fold text-center w-full",title:"90 Days Mass Gain program w/Nutrition plan",note:"Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi dolor dolor, auctor tincidunt lorem ut, venenatis dapibus mi. Nunc venenatis sollicitudin nisl vel auctor.", bimg: "/img/slide-1.jpg", btn: "$54.99 TO GET STARTED",btnlink:"book-appointment/glutes" },
+  { ico: "fa fa-dumbbell text-red-700 text-6xl text-fold text-center w-full",title:"Nutrition plan",note:"Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi dolor dolor, auctor tincidunt lorem ut, venenatis dapibus mi. Nunc venenatis sollicitudin nisl vel auctor.", bimg: "/img/slide-1.jpg", btn: "$19.99 TO GET STARTED",btnlink:"weightloss" },
 
 ];
 
@@ -30,9 +31,7 @@ let programs = [
     <p
       class="text-center text-white md:col-start-2 md:col-span-4 md:w-7/12 w-full"
     >
-      Maecenas consequat ex id lobortis venenatis. Mauris id erat enim. Morbi
-      dolor dolor, auctor tincidunt lorem ut, venenatis dapibus mi. Nunc
-      venenatis sollicitudin nisl vel auctor.
+    Wa are here to guide you on your journey towards achieving optimal health and wellness. lets Go!!
     </p>
   </div>
 
@@ -41,7 +40,7 @@ let programs = [
   >
     <div v-for="program in programs"
         :key="program.title"
-      class="relative justify-between md:w-10/12 md:p-5   hover:border-red-900 hover:md:p-0 duration-500 hover:py-[20px] duration-500  rounded-2xl py-[10px] md:h-[400px]"
+      class="relative justify-between md:w-12/12 md:p-5   hover:border-red-900 hover:md:p-0 duration-500 hover:py-[20px] duration-500   rounded-2xl py-[10px] md:h-[400px]"
       
     >
       <div class="absoldute w-full left-0 top-0  rounded-2xl h-[300px]">
@@ -55,7 +54,7 @@ let programs = [
         <span
          :class="program.ico"
         ></span>
-        <h3 class="font-bold text-red-100 text-1xl text-center w-full ">
+        <h3 class="font-bold text-red-100 text-1xl text-yellow-600  text-center w-full ">
           {{program.title}}
         </h3>
 
@@ -64,7 +63,7 @@ let programs = [
         </p>
 
         <div class="grid place-content-center">
-          <buttons>{{program.btn}}</buttons>
+          <buttons><router-link :to="program.btnlink"> {{program.btn}}</router-link></buttons>
         </div>
       </div>
     </div>

@@ -9,8 +9,10 @@ const authStore = useAuthStore();
 let open = ref(false);
 let Links = [
   { name: "Home", link: "home" },
-  { name: "Programs", link: "services" },
-  { name: "Custom Coach", link: "book-appointment" },
+  { name: "Services", link: "services" },
+
+  { name: "Programs", link: "programs" },
+  // { name: "Custom Coach", link: "book-appointment" },
   { name: "Contact", link: "contact" },
 ];
 

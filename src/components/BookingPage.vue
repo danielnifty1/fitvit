@@ -15,7 +15,7 @@ import {
 
 } from "@vuelidate/validators";
 
-const userInfo = reactive({
+const bookingInfo = reactive({
   session_type: "",
   duration: "",
   title: "",
@@ -28,33 +28,37 @@ const userInfo = reactive({
 const loading = ref(false);
 
 const store = useAuthStore();
+
+
 const rules = computed(() => {
   return {
     session_type: {
-      required: helpers.withMessage("Email address is required", required),
+      required: helpers.withMessage("Select atleast one session", required),
      
     },
     duration: {
-      required: helpers.withMessage("Secret question  is required", required),
+      required: helpers.withMessage("Duration  is required", required),
   
     },
     title: {
-      required: helpers.withMessage("Secret answer  is required", required),
+      required: helpers.withMessage("Title  is required", required),
     },
 
   
     doa: {
-      required: helpers.withMessage("Bitcoin address  is required", required),
+      required: helpers.withMessage("Choose Appointment Date", required),
     }
   };
 });
 
-const v$ = useVuelidate(rules as any, userInfo);
+const v$ = useVuelidate(rules as any, bookingInfo);
 //define register method
 const submitForm = async (): Promise<void> => {
+  
   // check if form is formattted correctly
   const isFormCorrect = await v$.value.$validate();
   if (isFormCorrect == true) {
+ 
     disabled.value = true;
     const data = {
       session_type: v$.value.session_type.$model as string,
@@ -64,10 +68,12 @@ const submitForm = async (): Promise<void> => {
       
     
     };
+    console.log(data)
 
     const [error, success] = await useAuth(store.userAppointment(data), loading);
     if (success || error) {
       disabled.value = false;
+      console.log(data)
     }
     if (success.value !== "") {
       //   redirect to the signin page
@@ -95,13 +101,14 @@ let coach = [
 ];
 
 var datez = new Date();
+
 // console.log(datez);
-console.log(datez.getFullYear());
-console.log(datez.getMonth()+1);
+// console.log(datez.getFullYear());
+// console.log(datez.getMonth()+1);
 var newmnt=datez.getMonth()+1;
-console.log(datez.getDate());
+// console.log(datez.getDate());
 var nowaday=datez.getFullYear()+"-"+"0"+newmnt+"-"+datez.getDate();
-console.log(nowaday);
+// console.log(nowaday);
 
 // 2023-06-18
 // datez.getTimezoneOffset
@@ -191,9 +198,12 @@ console.log(nowaday);
                     Session Type
                 </label>
 
-                <select name="name" id="name"  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" >
+                <select   v-model="bookingInfo.session_type" name="name" id="name"  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" >
                 <option>Virtual</option>
                 </select>
+                <div v-if="v$.session_type.$error" class="text-red-400">
+                  {{ "* " + v$.session_type.$errors[0].$message }}
+                </div>
                 <!-- <input type="text"  placeholder="Full Name"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" /> -->
             </div>
@@ -201,19 +211,25 @@ console.log(nowaday);
                 <label for="phone" class="mb-3 block text-base font-medium text-white">
                    Duration
                 </label>
-                <select name="name" id="name"  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" >
+                <select v-model="bookingInfo.duration" name="name" id="name"  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" >
                 <option>30 minutes</option>
                 <option>1 Hour</option>
                 <option>1 Hour 30 minutes</option>
                 <option>2 Hours (max)</option>
                 </select>
+                <div v-if="v$.duration.$error" class="text-red-400">
+                  {{ "* " + v$.duration.$errors[0].$message }}
+                </div>
             </div>
             <div class="mb-5">
                 <label for="email" class="mb-3 block text-base font-medium text-white">
                     Title
                 </label>
-                <input type="" name="title" id="title" placeholder="Enter your title"
+                <input type="" v-model="bookingInfo.title" name="title" id="title" placeholder="Enter your title"
                     class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                    <div v-if="v$.title.$error" class="text-red-400">
+                  {{ "* " + v$.title.$errors[0].$message }}
+                </div>
             </div>
             <div class="-mx-3 flex flex-wrap">
                 <div class="w-full px-3 ">
@@ -222,8 +238,11 @@ console.log(nowaday);
                             Date
                         </label>
                         
-                        <input type="date" name="date" id="date" :min="nowaday"
+                        <input v-model="bookingInfo.doa" type="date" name="date" id="date" :min="nowaday"
                             class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
+                            <div v-if="v$.doa.$error" class="text-red-400">
+                  {{ "* " + v$.doa.$errors[0].$message }}
+                </div>
                     </div>
                 </div>
                 <!-- <div class="w-full px-3 sm:w-1/2">

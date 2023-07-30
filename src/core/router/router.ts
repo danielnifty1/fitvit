@@ -5,7 +5,7 @@ import isAuthenticated from "../../helpers/authenticate";
 const HeaderFile=()=>import("../../components/HeaderFile.vue")
 const Homepage=()=>import( "../../components/Homepage.vue");
 const Servicespage=()=>import( "../../components/ProgramPage.vue");
-const aboutpage=()=>import( "../../components/CustomeCoach.vue");
+const BookingPage=()=>import( "../../components/BookingPage.vue");
 const contactpage=()=>import( "../../components/ContactPage.vue");
 const buttons=()=>import("../../components/Buttons.vue");
 const BreadCrumb=()=>import("../../components/BreadCrumb.vue");
@@ -18,8 +18,8 @@ const OtpPage=()=>import("../../components/OtpPage.vue");
 const routes: Array<RouteRecordRaw> = [
   { path: "/", redirect: "/home" },
   { path: "/home", name: "page.home", components: {default:Homepage, NavBar: HeaderFile,FooterPage: FooterFile } },
-  { path: "/book-appointment", name: "Appointment-Booking", components: {default:aboutpage, NavBar: HeaderFile,banner: BreadCrumb,FooterPage: FooterFile } },
-  { path: "/services",name:"Programs", components: { default: Servicespage, NavBar: HeaderFile, banner: BreadCrumb, FooterPage: FooterFile, } },
+  { path: "/book-appointment", name: "Appointment-Booking", components: {default:BookingPage, NavBar: HeaderFile,banner: BreadCrumb,FooterPage: FooterFile } },
+  { path: "/programs",name:"Programs", components: { default: Servicespage, NavBar: HeaderFile, banner: BreadCrumb, FooterPage: FooterFile, } },
   { path: "/contact",name:"Contact-Us", components: { default: contactpage,NavBar: HeaderFile, banner: BreadCrumb, FooterPage: FooterFile, } },
   { path: "/signup", components: { default: Regform, NavBar: HeaderFile, FooterPage: FooterFile,buttons:buttons } },
    { path: "/verify-email",name:"verify", components: { default: OtpPage, NavBar: HeaderFile, FooterPage: FooterFile, } },
