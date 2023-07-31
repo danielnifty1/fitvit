@@ -13,7 +13,7 @@ const FooterFile=()=>import("../../components/FooterFile.vue");
 const Regform=()=>import("../../components/Regform.vue");
 const LoginPage=()=>import("../../components/LoginPage.vue");
 const OtpPage=()=>import("../../components/OtpPage.vue");
-// const Servicespage=()=>import("../../components/OtpPage.vue");
+const ProgramPage=()=>import("../../components/ProgramPage.vue");
 
 
 const routes: Array<RouteRecordRaw> = [
@@ -24,6 +24,7 @@ const routes: Array<RouteRecordRaw> = [
   { path: "/contact",name:"Contact-Us", components: { default: contactpage,NavBar: HeaderFile, banner: BreadCrumb, FooterPage: FooterFile, } },
   { path: "/signup", components: { default: Regform, NavBar: HeaderFile, FooterPage: FooterFile,buttons:buttons } },
    { path: "/verify-email",name:"verify", components: { default: OtpPage, NavBar: HeaderFile, FooterPage: FooterFile, } },
+   { path: "/programs",name:"Programs", components: { default: ProgramPage, NavBar: HeaderFile,banner: BreadCrumb, FooterPage: FooterFile, } },
 
   { path: "/login", components: {default:LoginPage,NavBar:HeaderFile,FooterPage:FooterFile  }},
 //   { path: "/signup", components: { default: NewAccount, banner: banner, FooterPage: FooterPage } },
