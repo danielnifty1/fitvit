@@ -1,5 +1,5 @@
   <script setup lang="ts">
-  import { reactive} from 'vue'
+  // import { reactive} from 'vue'
   import buttons from "../components/Buttons.vue";
   import { Collapse, Ripple, initTE } from "tw-elements";
 
@@ -8,12 +8,7 @@
   initTE({ Collapse, Ripple });
   // variables
   // let open = ref(false)
-  let Links =reactive([
-    { name: "PERSONAL TRAINER", bimg: "/img/slide-1.jpg", btn: "MORE" },
-    { name: "FREE WORKOUTs", bimg: "/img/bg-programs.jpg", btn: "MORE" },
-    { name: "CROSSFIT", bimg: "/img/trainer-1.jpg", btn: "MORE" },
-    { name: "MARTIAL ARTS", bimg: "/img/trainer-2.jpg", btn: "MORE" },
-  ]);
+
   </script>
 
 <template>
