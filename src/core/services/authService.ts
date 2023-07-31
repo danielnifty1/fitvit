@@ -20,21 +20,21 @@ class AuthService {
    * @param {*} data
    */
   async register(data: Register): Promise<any> {
-    const response = await this.request.post("/auth/sign-up", data, {});
+    const response = await this.request.post("/auth/sign-up", data);
     return response;
   }
 
 
 
-/**
-   * Post -- BOOK APPOINTMENT
-   * user book appointment data.sessionType,data.Duration.data.title,data.date
-   * @param {*} data
-   */
-async bookappointment(data: Bookappointment): Promise<any> {
-  const response = await this.request.post("/auth/book-appointment", data, {});
-  return response;
-}
+  /**
+     * Post -- BOOK APPOINTMENT
+     * user book appointment data.sessionType,data.Duration.data.title,data.date
+     * @param {*} data
+     */
+  async bookappointment(data: Bookappointment): Promise<any> {
+    const response = await this.request.post("/appointment/book-appointment", data, { headers: authHeader() });
+    return response;
+  }
   /**
    * Post -- Login
    * user login data.email and data.password
@@ -44,7 +44,7 @@ async bookappointment(data: Bookappointment): Promise<any> {
     const response = await this.request.post("/auth/sign-in", {
       ...data,
     });
-    
+
     return response;
   }
   /**
@@ -59,11 +59,11 @@ async bookappointment(data: Bookappointment): Promise<any> {
     return response;
   }
 
-   /**
-   * Post -- Verify email
-   * @param {*} data
-   */
-   async verifyEmail(data: {otp:number}): Promise<any> {
+  /**
+  * Post -- Verify email
+  * @param {*} data
+  */
+  async verifyEmail(data: { otp: number }): Promise<any> {
     const response = await this.request.post("/auth/verify-email", {
       ...data,
     });

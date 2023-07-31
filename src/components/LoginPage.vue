@@ -56,6 +56,8 @@ const submitForm = async (): Promise<void> => {
     const [error, success] = await useAuth(store.userLogin(data), loading);
     if (success || error) {
       disabled.value = false;
+
+      // console.log(error)
     }
     if (success.value !== "") {
       //   redirect to the signin page
@@ -70,7 +72,7 @@ const submitForm = async (): Promise<void> => {
       }, 4000);
       
     }
-    console.log(success.value);
+    // console.log(success.value);
     // loading.value = isLoading.value;
   }
 };
@@ -78,7 +80,7 @@ const submitForm = async (): Promise<void> => {
 <template>
   <section class="">
     <div
-      class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0"
+      class="flex flex-col items-center justify-center px-6 py-20 mx-auto md:h-screen lg:py-0"
       style="
         background-image: linear-gradient(
             rgba(2, 0, 0, 0.5),

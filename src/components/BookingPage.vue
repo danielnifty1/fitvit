@@ -62,18 +62,18 @@ const submitForm = async (): Promise<void> => {
     disabled.value = true;
     const data = {
       session_type: v$.value.session_type.$model as string,
-      duration: v$.value.Duration.$model as string,
-    title: v$.value.Title.$model as string,
-      doa: v$.value.Doa.$model as string,
+      duration: v$.value.duration.$model as string,
+    title: v$.value.title.$model as string,
+      doa: v$.value.doa.$model as string,
       
     
     };
-    console.log(data)
+
 
     const [error, success] = await useAuth(store.userAppointment(data), loading);
     if (success || error) {
       disabled.value = false;
-      console.log(data)
+      console.log(error)
     }
     if (success.value !== "") {
       //   redirect to the signin page

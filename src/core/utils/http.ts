@@ -1,14 +1,9 @@
 import Axios from "axios";
 console.log(import.meta.env.VITE_APP_ENV)
 // create an new axios http instance
-const http = Axios.create(
-  { 
-  baseURL:import.meta.env.VITE_APP_ENV === "production"? "https://fitvit.netlify.app": "https://fitserver-else.onrender.com/api/v1",
-  
-
-headers: {
+const http = Axios.create({ baseURL:import.meta.env.VITE_APP_ENV === "production"? "https://obscure-hollows-04806.herokuapp.com/api/v1": "http://localhost:5002/api/v1",
+  headers: {
     "X-Requested-With": "XMLHttpRequest",
-    
   },
 });
 

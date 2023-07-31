@@ -188,7 +188,7 @@ const submitForm = async (): Promise<void> => {
                   v-model="userInfo.FirstName"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
-                <div v-if="v$.FirstName.$error" class="text-danger">
+                <div v-if="v$.FirstName.$error" class="text-red-600">
                   {{ "* " + v$.FirstName.$errors[0].$message }}
                 </div>
               </div>
@@ -206,7 +206,7 @@ const submitForm = async (): Promise<void> => {
                   placeholder="last name"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
-                <div v-if="v$.LastName.$error" class="text-danger">
+                <div v-if="v$.LastName.$error" class="text-red-600">
                   {{ "* " + v$.LastName.$errors[0].$message }}
                 </div>
               </div>
@@ -226,7 +226,7 @@ const submitForm = async (): Promise<void> => {
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 placeholder="your@email.com"
               />
-              <div v-if="v$.email.$error" class="text-danger">
+              <div v-if="v$.email.$error" class="text-red-600">
                 {{ "* " + v$.email.$errors[0].$message }}
               </div>
             </div>
@@ -282,7 +282,7 @@ const submitForm = async (): Promise<void> => {
                 class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
               ></textarea>
 
-              <div v-if="v$.goals.$error" class="text-danger">
+              <div v-if="v$.goals.$error" class="text-red-600">
                 {{ "* " + v$.goals.$errors[0].$message }}
               </div>
             </div>
@@ -304,7 +304,7 @@ const submitForm = async (): Promise<void> => {
                   <option :value=true>Yes</option>
                   <option :value=false>No</option>
                 </select>
-                <div v-if="v$.coached.$error" class="text-danger">
+                <div v-if="v$.coached.$error" class="text-red-600">
                   {{ "* " + v$.coached.$errors[0].$message }}
                 </div>
               </div>
@@ -324,7 +324,7 @@ const submitForm = async (): Promise<void> => {
                   placeholder="Instagram Handle"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
-                <div v-if="v$.dob.$error" class="text-danger">
+                <div v-if="v$.dob.$error" class="text-red-600">
                   {{ "* " + v$.dob.$errors[0].$message }}
                 </div>
               </div>
@@ -347,7 +347,7 @@ const submitForm = async (): Promise<void> => {
                   placeholder="••••••••"
                   class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                 />
-                <div v-if="v$.password.$error" class="text-danger">
+                <div v-if="v$.password.$error" class="text-red-600">
                   {{ "* " + v$.password.$errors[0].$message }}
                 </div>
               </div>
@@ -369,7 +369,7 @@ const submitForm = async (): Promise<void> => {
                 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700
                 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white
                 dark:focus:ring-blue-500 dark:focus:border-blue-500" />
-                <div v-if="v$.confirmPassword.$error" class="text-danger">
+                <div v-if="v$.confirmPassword.$error" class="text-red-600">
                   {{ "* " + v$.confirmPassword.$errors[0].$message }}
                 </div>
               </div>
