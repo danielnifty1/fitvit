@@ -9,10 +9,12 @@
   // variables
   // let open = ref(false)
   let Links =reactive([
-    { name: "PERSONAL TRAINER", bimg: "/img/slide-1.jpg", btn: "MORE" },
-    { name: "FREE WORKOUTs", bimg: "/img/bg-programs.jpg", btn: "MORE" },
-    { name: "CROSSFIT", bimg: "/img/trainer-1.jpg", btn: "MORE" },
-    { name: "MARTIAL ARTS", bimg: "/img/trainer-2.jpg", btn: "MORE" },
+    { title: "Goal Setting", message: "We work closely with you to define your specific goals, whether it's weight loss, building muscle, enhancing athletic performance, or simply adopting a healthier lifestyle. By establishing clear objectives, we can develop a tailored plan that maximizes your potential.", },
+
+    { title: "Customized Workouts:", message: "Our training sessions are carefully crafted to suit your fitness level, preferences, and limitations. Whether you prefer high-intensity workouts, strength training, cardiovascular exercises, or a combination thereof, we will create a program that keeps you engaged and motivated.", },
+
+    { title: "Proper Form and Technique", message: "Safety is our top priority. We ensure that you perform exercises with correct form and technique, reducing the risk of injury and maximizing the effectiveness of each movement. You can be rest assured that every session will be conducted with close attention to detail.", },
+    { title: "Nutritional Guidance", message: "Exercise alone is not enough to achieve your fitness goals. Our expertise extends beyond the gym floor as we provide nutritional guidance tailored to your needs. We educate you on balanced eating, portion control, and making healthier food choices to complement your training regimen.", },
   ]);
   </script>
 
@@ -24,8 +26,8 @@
         url(/img/slide-1.jpg);
     "
   >
-    <div class="flex place-content-center">
-      <h2 class="text-4xl md:text-6xl font-bold py-10 mt-10 md:mt-0">
+    <div class="flex place-content-center py-10">
+      <h2 class="text-4xl md:text-6xl font-bold md:py-10 mt-20 mt-10 md:mt-0">
         <span class="text-white">PUSH</span
         ><span class="text-yellow-400"> YOURSELF</span>
       </h2>
@@ -35,7 +37,7 @@
       class="grid md:grid-cols-4 z-10 gap-6 w-full p-2 md:p-0 justify-center place-content-center"
     >
       <p
-        class="text-center text-white p-4 md:p-5 bg-gray-900 md:opacity-80 md:col-start-2 md:col-span-4 md:w-7/12 w-full"
+        class="text-center text-white p-4 md:p-5 bg-gray-900 opacity-80 md:col-start-2 md:col-span-4 md:w-7/12 w-full"
       >
       Welcome to VitFit where your fitness goals become our mission. As a dedicated and experienced personal trainer, I am here to guide you on your journey towards achieving optimal health and wellness. Let's embark on this transformative path together!
       </p>
@@ -64,16 +66,16 @@
       class="place-content-center bg-gray-800 md:p-8 p-1 box-border md:w-1/3 w-full"
     >
       <div
-        class="place-content-center text-center space-y-8 hover:border-red-700 duration-1000 border-gray-800 border-4 p-8"
+        class="place-content-center text-center space-y-8 hover:border-red-700 duration-1000 border-gray-800 border-4 p-"
       >
         <span class="fa fa-lock text-red-700 text-6xl text-fold"></span>
-        <h3 class="font-bold text-white text-3xl">BODY BUILDING</h3>
+        <h3 class="font-bold text-white text-3xl">Nutritional Guidance</h3>
 
         <p class="text-gray-400">
-          Bodybuilding is the use of progressive resistance exercise to build, control, and develop one's muscles via hypertrophy. An individual who engages in this activity is referred to as a bodybuilder
+          Exercise alone is not enough to achieve your fitness goals. Our expertise extends beyond the gym floor as we provide nutritional guidance tailored to your needs. We educate you on balanced eating, portion control, and making healthier food choices to complement your training regimen.
         </p>
 
-        <buttons class="ease-in duration-300"> VIEW GUIDE </buttons>
+        <!-- <buttons class="ease-in duration-300"> VIEW GUIDE </buttons> -->
       </div>
     </div>
 
@@ -81,17 +83,16 @@
       class="place-content-center bg-gray-800 md:p-8 p-1 box-border md:w-1/3 w-full"
     >
       <div
-        class="place-content-center text-center space-y-8 hover:border-red-700 duration-1000 border-gray-800 border-4 p-10 hover:duration-900 hover:ease-in"
+        class="place-content-center text-center space-y-8 hover:border-red-700 duration-1000 border-gray-800 border-4 p- hover:duration-900 hover:ease-in"
       >
         <span class="fa fa-lock text-red-700 text-6xl text-fold"></span>
-        <h3 class="font-bold text-white text-3xl">BODY BUILDING</h3>
+        <h3 class="font-bold text-white text-3xl">Accountability and Support</h3>
 
         <p class="text-gray-400">
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam.
+          Consistency is key to long-term success. As your personal trainer, we hold you accountable for your actions and provide unwavering support throughout your fitness journey. We understand the challenges you may face and are here to celebrate your achievements and motivate you during setbacks
         </p>
 
-        <buttons> VIEW GUIDE </buttons>
+        <!-- <buttons> VIEW GUIDE </buttons> -->
       </div>
     </div>
 
@@ -99,66 +100,50 @@
       class="place-content-center bg-gray-800 md:p-8 p-1 box-border md:w-1/3 w-full"
     >
       <div
-        class="place-content-center text-center space-y-8 hover:border-red-700 duration-1000 border-gray-800 border-4 p-10 hover:duration-900 hover:ease-in"
+        class="place-content-center text-center space-y-8 hover:border-red-700 duration-1000 border-gray-800 border-4 p- hover:duration-900 hover:ease-in"
       >
         <span class="fa fa-lock text-red-700 text-6xl text-fold"></span>
-        <h3 class="font-bold text-white text-3xl">BODY BUILDING</h3>
+        <h3 class="font-bold text-white text-3xl">Continuous Progress Evaluation</h3>
 
         <p class="text-gray-400">
-          Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-          accusantium doloremque laudantium, totam rem aperiam.
+          Your progress is meticulously tracked through various assessments, such as body measurements, strength tests, and endurance assessments. Regular evaluations allow us to fine-tune your program and ensure that you consistently progress towards your goals.
         </p>
 
-        <buttons> VIEW SCHEDULE </buttons>
+        <!-- <buttons> VIEW SCHEDULE </buttons> -->
       </div>
     </div>
   </div>
 
   <div
-    class="w-full bg-fixed bg-center bg-no-repeat bg-cover md:h-[600px] h-[1600px]"
+    class="w-full bg-fixed bg-center bg-no-repeat bg-cover md:h-auto h-[1600px]"
     style="
       background-image: linear-gradient(rgba(2, 0, 0, 0.5), rgba(2, 0, 0, 0.5)),
         url(/img/bg-programs.jpg);
     "
   >
-    <div class="md:col-start-2 md:col-span-3 w-full">
+    <div class="md:col-start-2 md:col-span-3 w-full  ">
       <h2 class="font-Poppins text-4xl text-center text-white pb-2 py-10">
-        Our Programs
+        What We Offer
       </h2>
 
-      <div class="flex justify-center">
+      <div class="flex justify-center ">
         <p
-          class="text-center text-white md:col-start-2 md:col-span-4 md:w-4/12 w-full py-5"
+          class="text-center text-white md:col-start-2 md:col-span-4 md:w-4/12 w-full "
         >
-          Maecenas consequat ex id lobortis venenatis. Mauris id erat enim.
-          Morbi dolor dolor, auctor tincidunt lorem ut, venenatis dadivibus mi.
-          Nunc venenatis sollicitudin nisl vel auctor.
+        At VitFit, we offer comprehensive and personalized training programs designed to help you reach your desired outcomes efficiently and safely. Here are some key elements of our approach:
         </p>
       </div>
     </div>
 
     <div
-      class="grid md:grid-cols-4 md:h-96 w-11/12 gap-8 px-10 mt-10 h-[900px] md:mx-12 mx-6 left-0 right-10 pb-10"
+      class=" grid md:grid-cols-4 w-full md:h-96 md:w-11/12 gap-8 px-5 mt-10 h-[900px] md:mx-12 mx-1 left-0 right-10 pb-10"
     >
-      <div
-        v-for="link in Links"
-        :key="link.name"
-        class="trainers relative border-4 border-transparent p-10 w-full h-[300px] md:h-full space-y-10 hover:border-red-700 duration-1000 hover:border-4 z-10"
-      >
-        <div
-          class="md:w-full w-[250px] absolute md:h-full h-48 left-0 top-0 border h-[290px]"
-        >
-          <img :src="link.bimg" class="h-full w-full" />
-        </div>
 
-        <div class="absolute left-0 w-full md:p-10 mt-10 mb-48 space-y-10">
-          <h4 class="text-white text-center w-full text-[20px] font-bold h">
-            {{ link.name }}
-          </h4>
-
-          <buttons class=" px-[38px] mx-7 py-2"> {{ link.btn }} </buttons>
-        </div>
-      </div>
+    <div  v-for="link in Links"
+        :key="link.title" class="bg-gray-900 opacity-80  trasiners relative border-4 border-transparent text-center md:p-5  h-[300px] md:h-[350px] space-y-10 hover:border-red-700 duration-1000 hover:border-4 z-10">
+      <h2 class="font-bold p-5 text-center text-red-700">{{ link.title }}</h2>
+      <p4 class="text-white">{{ link.message }}</p4>
+    </div>
     </div>
   </div>
 
