@@ -1,9 +1,13 @@
   <script setup lang="ts">
   import { reactive} from 'vue'
   import buttons from "../components/Buttons.vue";
+  import TrainerModal from "../components/modal/TrainerModal.vue";
   import { Collapse, Ripple, initTE } from "tw-elements";
-
-
+  import { ref } from "vue";
+let modalActive=ref(false)
+const ToggleModal=()=>{
+  modalActive.value=!modalActive.value
+}
   // initializations
   initTE({ Collapse, Ripple });
   // variables
@@ -42,6 +46,32 @@
       Welcome to VitFit where your fitness goals become our mission. As a dedicated and experienced personal trainer, I am here to guide you on your journey towards achieving optimal health and wellness. Let's embark on this transformative path together!
       </p>
     </div>
+    <div class="flex justify-center p-10">
+      <buttons class="w-fit" @click="ToggleModal">who's a Trainer</buttons>
+
+    </div>
+
+    <TrainerModal v-show="modalActive"> 
+
+      <div
+      class="modal-contwent grid md:grid-cols-6 z-10 gap-6 w-full p-2 md:p-0 justify-center place-content-center"
+    >
+    
+
+      <p
+        class="text-center text-white p-4 md:p-5 bg-gray-900 opacity-80 md:col-start-2 md:col-span-4 md:w-12/12 w-full"
+      >
+      <h4 class="text-center font-bold text-2xl text-red-800">Who is a Personal Trainer</h4>
+      A personal trainer is more than just a fitness expert; they are your confidant, motivator, and educator rolled into one. With a deep understanding of exercise science, nutrition, and lifestyle management, a personal trainer becomes your trusted partner in improving your physical, mental, and emotional well-being. 
+We understand that everyone has unique needs and goals, and we tailor our approach to suit your individual requirements effectively.
+      </p>
+      <i  @click="ToggleModal" class="fa fa-close text-red-600 absolute md:right-[240px] right-5  top-2 border border-radius-10 bg-gray-100 mt-2 hover:text-red-400 cursor-pointer "></i>
+      
+    </div>
+       
+      
+
+    </TrainerModal>
   </div>
 
   <div
@@ -298,4 +328,26 @@
   background-image: linear-gradient(rgba(2, 0, 0, 0.5), rgba(2, 0, 0, 0.5));
   /* url(v-bind(links[0].bgimg)); */
 }
+.modal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  top:0;
+  left: 0;
+  background-color: rgb(255, 255, 255,0.7);
+  z-index: 50;
+}
+
+.modal-content{
+  position: relative;
+  max-width: 640px;
+  widows: 80%;
+  box-shadow: 0 4px 6px-1px rgba(0, 0, 0, 0.1);
+background-color: white;
+padding: 6px 16px;
+}
+
 </style>
