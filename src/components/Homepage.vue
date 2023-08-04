@@ -65,7 +65,7 @@ const ToggleModal=()=>{
       A personal trainer is more than just a fitness expert; they are your confidant, motivator, and educator rolled into one. With a deep understanding of exercise science, nutrition, and lifestyle management, a personal trainer becomes your trusted partner in improving your physical, mental, and emotional well-being. 
 We understand that everyone has unique needs and goals, and we tailor our approach to suit your individual requirements effectively.
       </p>
-      <i  @click="ToggleModal" class="fa fa-close text-red-600 absolute md:right-[240px] right-5  top-2 border border-radius-10 bg-gray-100 mt-2 hover:text-red-400 cursor-pointer "></i>
+      <i  @click="ToggleModal" class="fa fa-close text-red-600 absolute md:right-[240px] right-5  top-18 border border-radius-10 bg-gray-100 mt-2 hover:text-red-400 cursor-pointer "></i>
       
     </div>
        
