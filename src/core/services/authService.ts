@@ -38,15 +38,6 @@ class AuthService {
   }
 
 
-    /**
-     * Post -- PAY APPOINTMENT
-     * user PAY FOR appointment data.sessionType,data.Duration.data.title,data.date
-     * @param {*} paymentData
-     */
-    async PayForappointment(paymentData: PayForappointment): Promise<any> {
-      const response = await this.request.post("/payment", paymentData, { headers: authHeader() });
-      return response;
-    }
   /**
    * Post -- Login
    * user login data.email and data.password

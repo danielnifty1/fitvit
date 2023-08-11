@@ -21,7 +21,7 @@ export interface Register {
     session_type: string;
     duration: number;
     title: string;
-    appointment_time: string;
+    appointment_time: [];
     total_duration:number;
     total_amount:number;
 
