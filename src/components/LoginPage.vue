@@ -1,17 +1,15 @@
 <script setup lang="ts">
-
 //   import { Collapse, Ripple, initTE } from "tw-elements";
 import { reactive, ref, computed } from "vue";
 // import { notify } from "@kyvg/vue3-notification";
-import {  useRouter } from "vue-router";
+import { useRouter } from "vue-router";
 import { useAuthStore } from "../core/store/index";
 import useVuelidate from "@vuelidate/core";
 import { required, email, helpers, minLength } from "@vuelidate/validators";
 import { useAuth } from "../composables/auth.composable";
 // instantiate router
 
-// insitialize route
-// const route = useRoute();
+
 // initialize router
 const router = useRouter();
 // initialize store
@@ -42,11 +40,8 @@ const rules = computed(() => {
   };
 });
 
-
 const v$ = useVuelidate(rules as any, userInfo);
 const submitForm = async (): Promise<void> => {
-
- 
   // check if form is formattted correctly
   const isFormCorrect = await v$.value.$validate();
   if (isFormCorrect == true) {
@@ -65,15 +60,20 @@ const submitForm = async (): Promise<void> => {
     if (success.value !== "") {
       //   redirect to the signin page
       setTimeout(() => {
-        router.go(-1)
-      }, 3000);
+
+        let prev =router.options.history.state.back
+         prev !== "/signup" ? router.go(-1):router.replace("/home");
+      }, 2000);
     }
 
-    if (error &&error.value.data && error.value.data.Error === "Your email isnt verified yet") {
+    if (
+      error &&
+      error.value.data &&
+      error.value.data.Error === "Your email isnt verified yet"
+    ) {
       setTimeout(() => {
         router.replace("/verify-email");
       }, 4000);
-      
     }
     // console.log(success.value);
     // loading.value = isLoading.value;
@@ -94,7 +94,7 @@ const submitForm = async (): Promise<void> => {
     >
       <a
         href="#"
-        class=" hidden flex items-center mb-6 text-2xl font-semibold text-gray-200 dark:text-white mt-20"
+        class="hidden flex items-center mb-6 text-2xl font-semibold text-gray-200 dark:text-white mt-20"
       >
         <img class="w-8 h-8 mr-2" src="/img/reh.png" alt="logo" />
         Vit Fit
@@ -156,12 +156,12 @@ const submitForm = async (): Promise<void> => {
               </div>
             </div>
 
-            <button  
-              class="spinner-border spinner-border-sm  w-full text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800
-              bg-red-700 hover:bg-red-500 hover:translate-x-1 duration-300 font-sm text-white rounded py-1.5  px-4
-              "
-              >LOGIN <span v-if="loading"  class="fa fa-spin fa fa-spinner" ></span> </button
+            <button
+              class="spinner-border spinner-border-sm w-full text-black bg-primary-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 bg-red-700 hover:bg-red-500 hover:translate-x-1 duration-300 font-sm text-white rounded py-1.5 px-4"
             >
+              LOGIN
+              <span v-if="loading" class="fa fa-spin fa fa-spinner"></span>
+            </button>
 
             <p class="text-sm font-light text-gray-500 dark:text-gray-400">
               Don't have an account?
@@ -176,10 +176,9 @@ const submitForm = async (): Promise<void> => {
       </div>
     </div>
   </section>
- 
 </template>
- <style scoped>
-    #afterclick{
-      display:none
-    }
-  </style>
+<style scoped>
+#afterclick {
+  display: none;
+}
+</style>

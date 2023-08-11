@@ -54,7 +54,7 @@ const ToggleModal=()=>{
     <TrainerModal v-show="modalActive"> 
 
       <div
-      class="modal-contwent grid md:grid-cols-6 z-10 gap-6 w-full p-2 md:p-0 justify-center place-content-center"
+      class="modal-contwent grid md:grid-cols-6 z-10 gap-6 w-full p-2 md:p-0 justify-center place-content-center translate-x-1 duration-300"
     >
     
 

@@ -1,7 +1,7 @@
 import Axios from "axios";
 console.log(import.meta.env.VITE_APP_ENV)
 // create an new axios http instance
-const http = Axios.create({ baseURL:import.meta.env.VITE_APP_ENV === "production"? "https://fitserver-else.onrender.com/api/v1": "https://fitserver-else.onrender.com/api/v1",
+const http = Axios.create({ baseURL:import.meta.env.VITE_APP_BASEURL === "production"? "http://localhost:5002/api/v1/": "http://localhost:5002/api/v1/",
   headers: {
     "X-Requested-With": "XMLHttpRequest",
   },

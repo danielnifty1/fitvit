@@ -7,7 +7,8 @@ import {
   ForgotPasswordInit,
   ForgotPasswordComplete,
   ChangePassword,
-  Bookappointment
+  Bookappointment,
+  PayForappointment
 } from "../../interfaces/auth.interface";
 class AuthService {
   constructor(private readonly request: Axios) {
@@ -32,9 +33,20 @@ class AuthService {
      * @param {*} data
      */
   async bookappointment(data: Bookappointment): Promise<any> {
-    const response = await this.request.post("/appointment/book-appointment", data, { headers: authHeader() });
+    const response = await this.request.post("/appointment", data, { headers: authHeader() });
     return response;
   }
+
+
+    /**
+     * Post -- PAY APPOINTMENT
+     * user PAY FOR appointment data.sessionType,data.Duration.data.title,data.date
+     * @param {*} paymentData
+     */
+    async PayForappointment(paymentData: PayForappointment): Promise<any> {
+      const response = await this.request.post("/payment", paymentData, { headers: authHeader() });
+      return response;
+    }
   /**
    * Post -- Login
    * user login data.email and data.password

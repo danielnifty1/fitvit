@@ -1,90 +1,127 @@
 <script setup lang="ts">
 // import VuePhoneNumberInput from 'vue-phone-number-input';
-import {ref, } from "vue";
-import { reactive,  computed } from "vue";
+import { ref, onMounted } from "vue";
+import { reactive, computed } from "vue";
+import { useRoute } from "vue-router";
 import buttons from "../components/Buttons.vue";
 import { useAuthStore } from "../core/store";
 import useVuelidate from "@vuelidate/core";
+import * as programs from "../static_data/programs.json";
+import initCalender from "../utils/date_helper";
+
+// initializ route
+const route = useRoute();
+
 const authStore = useAuthStore();
 
 const disabled = ref(false);
 import { useAuth } from "../composables/auth.composable";
-import {
-  required,
-  helpers,
-
-} from "@vuelidate/validators";
+import { required, helpers } from "@vuelidate/validators";
 
 const bookingInfo = reactive({
   session_type: "",
   duration: "",
   title: "",
-  doa: "",
- 
-
-  // email: "",
+  appointment_time: "", // email: "",
 });
+
 // const disabled = ref(false);
 const loading = ref(false);
 
 const store = useAuthStore();
+
+const aboutTheProgram = computed(() => {
+  return programs.data.filter((program) => {
+    if (program.id == (route.query.program as any)) {
+      return program;
+    }
+  });
+});
 
 
 const rules = computed(() => {
   return {
     session_type: {
       required: helpers.withMessage("Select atleast one session", required),
-     
     },
     duration: {
       required: helpers.withMessage("Duration  is required", required),
-  
     },
-    title: {
-      required: helpers.withMessage("Title  is required", required),
-    },
+    // title: {
+    //   required: helpers.withMessage("Title  is required also", required),
+    // },
 
-  
-    doa: {
-      required: helpers.withMessage("Choose Appointment Date", required),
-    }
+    // appointment_time: {
+    //   required: helpers.withMessage("Choose Appointment Date", required),
+    // },
   };
 });
 
 const v$ = useVuelidate(rules as any, bookingInfo);
+
 //define register method
+
 const submitForm = async (): Promise<void> => {
-  
   // check if form is formattted correctly
+  let theDate = document.getElementById("calender") as HTMLInputElement;
+  let formatedDate = new Date(theDate?.value);
+  let year = formatedDate.getFullYear();
+  let month = formatedDate.getMonth() + 1;
+  let day = formatedDate.getDate();
+  let dateObj = { year, month, day };
+  // console.log(dateObj);
   const isFormCorrect = await v$.value.$validate();
   if (isFormCorrect == true) {
- 
     disabled.value = true;
+    const total_Duration=parseInt(v$.value.duration.$model)/30;
+    const total_amount=aboutTheProgram.value[0].cost*total_Duration;
     const data = {
       session_type: v$.value.session_type.$model as string,
-      duration: v$.value.duration.$model as string,
-    title: v$.value.title.$model as string,
-      doa: v$.value.doa.$model as string,
-      
-    
+      duration: parseInt(v$.value.duration.$model),
+      title: aboutTheProgram.value[0].title,
+      appointment_time: dateObj,
+      total_duration:total_Duration,
+      total_amount:total_amount
     };
 
+    // payment data
+    // const paymentData = {
+    //   session_type: v$.value.session_type.$model as string,
 
-    const [error, success] = await useAuth(store.userAppointment(data), loading);
-    if (success || error) {
+    //   duration: parseInt(v$.value.duration.$model),
+    //   title: aboutTheProgram.value[0].title,
+    //   appointment_time: dateObj,
+  
+    //   total_duration:total_Duration,
+    //   total_amount:total_amount
+      
+    // };
+
+
+
+    // console.log(paymentData); 
+    const [error, success] = await useAuth(
+      store.userAppointment(data),
+      
+      loading
+    );
+    console.log("return data is "+ success)
+    if (success || error ) {
       disabled.value = false;
-      console.log(error)
+      console.log(error);
     }
     if (success.value !== "") {
+      console.log(success)
+      // store.userPayForAppointment(paymentData),
+
       //   redirect to the signin page
       setTimeout(() => {
-        window.location.href = "/verify-email";
+        // store.userPayForAppointment(paymentData);
+        // window.location.href = "/verify-email";
       }, 3000);
     }
   }
 };
-
-
 
 let coach = [
   { icon: "Home", note: "Apply For Coaching" },
@@ -100,45 +137,9 @@ let coach = [
   { icon: "Home", note: "We Begin Your Fitness Challenge" },
 ];
 
-var datez = new Date();
-
-// console.log(datez);
-// console.log(datez.getFullYear());
-// console.log(datez.getMonth()+1);
-var newmnt=datez.getMonth()+1;
-// console.log(datez.getDate());
-var nowaday=datez.getFullYear()+"-"+"0"+newmnt+"-"+datez.getDate();
-// console.log(nowaday);
-
-// 2023-06-18
-// datez.getTimezoneOffset
-
-// function formatDate(datez = new Date()) {
-//   return [
-//     datez.getFullYear(),
-//     console.log(datez.getMonth() + 1),
-//     console.log(datez.getDate()),
-//   ].join('-');
-// }
-// const dateInput = document.getElementById('date');
-
-// // ✅ Using the visitor's timezone
-// dateInput.value = formatDate();
-
-// console.log(formatDate());
-
-// function padTo2Digits(num) {
-//   return num.toString().padStart(2, '0');
-// }
-
-// function formatDate(date = new Date()) {
-//   return [
-//     date.getFullYear(),
-//     padTo2Digits(date.getMonth() + 1),
-//     padTo2Digits(date.getDate()),
-//   ].join('-');
-// }
-
+onMounted(() => {
+  initCalender();
+});
 </script>
 
 <template>
@@ -149,7 +150,7 @@ var nowaday=datez.getFullYear()+"-"+"0"+newmnt+"-"+datez.getDate();
     </h2>
   </div>
 
-  <div class="grid  md:grid-cols-2 w-full h-auto md:p-10">
+  <div class="grid md:grid-cols-2 w-full h-auto md:p-10">
     <div class="w-full h-auto p-10">
       <img src="/img/Image-1-1.png" class="w-full h-full rounded-3xl" />
     </div>
@@ -164,7 +165,7 @@ var nowaday=datez.getFullYear()+"-"+"0"+newmnt+"-"+datez.getDate();
         <h4 class="text-white text-[15px] text-justify">{{ link.note }}</h4>
       </div>
 
-      <div class="flex justify-center ">
+      <div class="flex justify-center">
         <buttons class=""
           >Get started <span class="fa fa-arrow-right"></span
         ></buttons>
@@ -172,115 +173,151 @@ var nowaday=datez.getFullYear()+"-"+"0"+newmnt+"-"+datez.getDate();
     </div>
   </div>
 
-  <div class=" mt-10 md:mt-0">
+  <div class="mt-10 md:mt-0">
     <div>
-        <p class="text-center text-2xl text-white font-bold">
+      <p class="text-center text-2xl text-white font-bold">
         Get Fit With Our Online Coach
       </p>
       <p class="text-center font-bold text-red-900 md:pb-10 pb-0">
         Book an Appointment Today
       </p>
-
     </div>
-   
+
     <div class="grid md:grid-cols-2 grid-cols-1 w-full h-auto p-10 space-x-5">
-      
-    
-      <div class="p-2 md:p-10 space shadow-md bg-gray-800 place-content-center rounded-2xl" style="background-image: url(./svg/effect-1-1.svg);">
+      <div
+        class="p-2 md:p-10 space shadow-md bg-gray-800 place-content-center rounded-2xl"
+        style="background-image: url(./svg/effect-1-1.svg)"
+      >
+        <h4
+          class="text-red-700 text-center font-bold md:text-4xl text-1xl mb-10"
+        >
+          Book an Appointment Today
+        </h4>
+        <form
+          class="text-white"
+          @submit.prevent="submitForm"
+          id="form"
+          action="pro"
+          method="post"
+        >
+          <div class="mb-5">
+            <label
+              for="name"
+              class="mb-3 block text-base font-medium text-white"
+            >
+              Session Type
+            </label>
 
-        <h4 class="text-red-700 text-center font-bold md:text-4xl text-1xl mb-10">Book an Appointment Today</h4>
-        <form class="text-white"  @submit.prevent="submitForm"
-            id="form"
-            action="pro"
-            method="post">
-            <div class="mb-5">
-                <label for="name" class="mb-3 block text-base font-medium text-white">
-                    Session Type
-                </label>
+            <select
+              v-model="bookingInfo.session_type"
+              name="name"
+              id="name"
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            >
+              <option value="VIRTUL">Virtual</option>
+              <option value="PHYSICAL">PHYSICAL</option>
+            </select>
+            <div v-if="v$.session_type.$error" class="text-red-400">
+              {{ "* " + v$.session_type.$errors[0].$message }}
+            </div>
+          </div>
+          <div class="mb-5">
+            <label
+              for="phone"
+              class="mb-3 block text-base font-medium text-white"
+            >
+              Duration
+            </label>
+            <select
+              v-model="bookingInfo.duration"
+              name="name"
+              id="name"
+            
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            >
+              <option value="30">30 minutes</option>
+              <option value="60">1 Hour</option>
+              <option value="90">1 Hour 30 minutes</option>
+              <option value="120">2 Hours (max)</option>
+            </select>
+            <div v-if="v$.duration.$error" class="text-red-400">
+              {{ "* " + v$.duration.$errors[0].$message }}
+            </div>
+          </div>
+          <div class="mb-5">
+            <label
+              for="email"
+              class="mb-3 block text-base font-medium text-white"
+            >
+              Title
+            </label>
+            <input
+              type=""
+              v-model="aboutTheProgram[0].title"
+              name="title"
+              id="title"
+              disabled
+              placeholder="Enter your title"
+              class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+            />
+            <!-- <div v-if="v$.title.$error" class="text-red-400">
+              {{ "* " + v$.title.$errors[0].$message }}
+            </div> -->
+          </div>
 
-                <select   v-model="bookingInfo.session_type" name="name" id="name"  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" >
-                <option>Virtual</option>
-                </select>
-                <div v-if="v$.session_type.$error" class="text-red-400">
-                  {{ "* " + v$.session_type.$errors[0].$message }}
-                </div>
-                <!-- <input type="text"  placeholder="Full Name"
-                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" /> -->
-            </div>
-            <div class="mb-5">
-                <label for="phone" class="mb-3 block text-base font-medium text-white">
-                   Duration
+          <div class="-mx-3 flex flex-wrap">
+            <div class="w-full px-3">
+              <div class="mb-5">
+                <label
+                  for="date"
+                  class="mb-3 block text-base font-medium text-white"
+                >
+                  Date
                 </label>
-                <select v-model="bookingInfo.duration" name="name" id="name"  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" >
-                <option>30 minutes</option>
-                <option>1 Hour</option>
-                <option>1 Hour 30 minutes</option>
-                <option>2 Hours (max)</option>
-                </select>
-                <div v-if="v$.duration.$error" class="text-red-400">
-                  {{ "* " + v$.duration.$errors[0].$message }}
-                </div>
-            </div>
-            <div class="mb-5">
-                <label for="email" class="mb-3 block text-base font-medium text-white">
-                    Title
-                </label>
-                <input type="" v-model="bookingInfo.title" name="title" id="title" placeholder="Enter your title"
-                    class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                    <div v-if="v$.title.$error" class="text-red-400">
-                  {{ "* " + v$.title.$errors[0].$message }}
-                </div>
-            </div>
-            <div class="-mx-3 flex flex-wrap">
-                <div class="w-full px-3 ">
-                    <div class="mb-5">
-                        <label for="date" class="mb-3 block text-base font-medium text-white">
-                            Date
-                        </label>
-                        
-                        <input v-model="bookingInfo.doa" type="date" name="date" id="date" :min="nowaday"
-                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                            <div v-if="v$.doa.$error" class="text-red-400">
-                  {{ "* " + v$.doa.$errors[0].$message }}
-                </div>
-                    </div>
-                </div>
-                <!-- <div class="w-full px-3 sm:w-1/2">
-                    <div class="mb-5">
-                        <label for="time" class="mb-3 block text-base font-medium text-white">
-                            Time
-                        </label>
-                        <input type="time" name="time" id="time"
-                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md" />
-                    </div>
+                <input
+                  v-model="bookingInfo.appointment_time"
+                  type="text"
+                  name="appointment_time"
+                  autocomplete="none"
+                  id="calender"
+                  class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+                />
+                {{ bookingInfo.appointment_time }}
+
+                <!-- <div v-if="v$.appointment_time.$error" class="text-red-400">
+                  {{ "* " + v$.appointment_time.$errors[0].$message }}
                 </div> -->
+              </div>
             </div>
+          </div>
 
-           
+          <div>
+            <button
+              v-if="authStore.isAuthenticated"
+              class="hover:shadow-form w-full rounded-md bg-[#6A64F1] hover:bg-[#423aef] duration-700 py-3 px-8 text-center text-base font-semibold text-white outline-none"
+            >
+              Book Appointment 
+            </button>
 
-            <div>
-                <button  v-if="authStore.isAuthenticated"
-                    class="hover:shadow-form w-full rounded-md bg-[#6A64F1] hover:bg-[#423aef] duration-700 py-3 px-8 text-center text-base font-semibold text-white outline-none">
-                   Book Appointment
-                </button>
-
-                <div v-else  class="hover:shadow-form w-full rounded-md bg-red-700 hover:bg-[#423aef] duration-700 py-3 px-8 text-center text-base font-semibold text-white outline-none">
-
-                
-                <Router-link to="/login" >
-                    Login First
-                  </Router-link>
-
-                </div>
+            <div
+              v-else
+              class="hover:shadow-form w-full rounded-md bg-red-700 hover:bg-[#423aef] duration-700 py-3 px-8 text-center text-base font-semibold text-white outline-none"
+            >
+              <Router-link to="/login"> Login First </Router-link>
             </div>
+          </div>
         </form>
       </div>
 
-      <div class="w-full h-auto hidden md:block  ">
-      <img src="/img/Image-1-1.png" class="w-full h-full rounded-2xl " />
-    </div>
-    </div>
+      <div class="w-full h-auto hidden md:block relative">
+        <div>
+          <img src="/img/Image-1-1.png" class="w-full h-full rounded-2xl" />
+        </div>
 
-   
+        <div class="absolute left-1 w-full top-[20px]">
+          <p class="text-white">{{ aboutTheProgram[0].note }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>

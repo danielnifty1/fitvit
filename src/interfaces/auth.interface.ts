@@ -12,9 +12,19 @@ export interface Register {
 
   export interface Bookappointment {
     session_type: string;
-    duration: string;
+    duration: number;
     title: string;
-    doa: string;
+    appointment_time: string;
+  }
+
+  export interface PayForappointment {
+    session_type: string;
+    duration: number;
+    title: string;
+    appointment_time: string;
+    total_duration:number;
+    total_amount:number;
+
   }
   export interface Login {
     email: string;
