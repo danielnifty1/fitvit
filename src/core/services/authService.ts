@@ -8,7 +8,7 @@ import {
   ForgotPasswordComplete,
   ChangePassword,
   Bookappointment,
-  PayForappointment
+  // PayForappointment
 } from "../../interfaces/auth.interface";
 class AuthService {
   constructor(private readonly request: Axios) {

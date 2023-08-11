@@ -9,7 +9,7 @@ import {
   ForgotPasswordComplete,
   ChangePassword,
   Bookappointment,
-  PayForappointment
+  // PayForappointment
 } from "../../../interfaces/auth.interface";
 import isAuthenticated from "../../../helpers/authenticate";
 
