@@ -51,7 +51,7 @@ const router = useRouter();
           {{ program.title }}
         </h3>
 
-        <p class="text-center text-white px-2 py-2 md:px-8" style=" overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; ">
+        <p class="text-justify text-white px-2 py-2 md:px-8" style=" overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 6; -webkit-box-orient: vertical; ">
           {{ program.note }}
         </p>
 

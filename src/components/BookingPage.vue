@@ -152,9 +152,9 @@ let coach = [
       </div>
 
       <div class="flex justify-center">
-        <buttons class=""
+        <!-- <buttons class=""
           >Get started <span class="fa fa-arrow-right"></span
-        ></buttons>
+        ></buttons> -->
       </div>
     </div>
   </div>
@@ -297,13 +297,20 @@ let coach = [
         </form>
       </div>
 
-      <div class="w-full h-auto hidden md:block relative">
-        <div>
-          <img src="/img/Image-1-1.png" class="w-full h-full rounded-2xl" />
+      <div class="w-full h-auto hidden md:block  bg-gray-800 p-5 ">
+        <div class="">
+          <h2 class="font-bold text-red-800 text-center text-2xl underline">
+          {{ aboutTheProgram[0].title }}
+
+          </h2>
         </div>
 
-        <div class="absolute left-1 w-full top-[20px]">
-          <p class="text-white">{{ aboutTheProgram[0].note }}</p>
+        <div class=" left-1 w-full top-[20px] mt-10">
+          <p class="text-white text-sm text-justify leading-10">{{ aboutTheProgram[0].note }}</p>
+        </div>
+        <div class="" style="overflow: hidden;">
+          <img :src="aboutTheProgram[0].bimg"  class="rounded-2xl hover:p-5 hover:-translate-y-6 delay-100 duration-1000">
+       
         </div>
       </div>
     </div>
