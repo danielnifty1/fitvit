@@ -9,11 +9,11 @@ const authStore = useAuthStore();
 let open = ref(false);
 let Links = [
   { name: "Home", link: "home" },
-  { name: "Services", link: "services" },
+  // { name: "Services", link: "services" },
 
   { name: "Programs", link: "programs" },
   // { name: "Custom Coach", link: "book-appointment" },
-  // { name: "Contact", link: "contact" },
+  { name: "Contact", link: "contact" },
 ];
 
 function Menuopen() {
