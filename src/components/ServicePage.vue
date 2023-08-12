@@ -1,6 +1,6 @@
 <script setup lang="ts">
 // import { reactive} from 'vue'
-import buttons from "../components/Buttons.vue";
+// import buttons from "../components/Buttons.vue";
 import { Collapse, Ripple, initTE } from "tw-elements";
 
 // initializations

@@ -3,7 +3,7 @@
 import { ref } from "vue";
 import { reactive, computed } from "vue";
 import { useRoute } from "vue-router";
-import buttons from "../components/Buttons.vue";
+// import buttons from "../components/Buttons.vue";
 import { useAuthStore } from "../core/store";
 import useVuelidate from "@vuelidate/core";
 import * as programs from "../static_data/programs.json";
