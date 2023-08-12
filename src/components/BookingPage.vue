@@ -200,7 +200,7 @@ let coach = [
               id="name"
               class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
             >
-              <option value="VIRTUL">Virtual</option>
+              <option value="VIRTUAL">VIRTUAL</option>
               <option value="PHYSICAL">PHYSICAL</option>
             </select>
             <div v-if="v$.session_type.$error" class="text-red-400">
@@ -263,7 +263,7 @@ let coach = [
                 
                 <input
                   v-model="bookingInfo.appointment_time"
-                  type="text"
+                  type="date"
                   placeholder="2023-08-24"
                   name="appointment_time"
                   autocomplete="none"
