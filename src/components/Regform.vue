@@ -403,7 +403,6 @@ const submitForm = async (): Promise<void> => {
               "
               >REGISTER <span v-if="loading" class="fa fa-spin fa fa-spinner"></span></button
             >
-
             <p class="text-sm font-light text-gray-500 dark:text-gray-400">
               Already have an account?
               <router-link
