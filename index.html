@@ -1,34 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/img/reh.png" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Vite + Vue + TS</title>
 
-    <link href="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/themes/light.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/themes/dark.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css"
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/img/reh.png" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vite + Vue + TS</title>
+  <link href="./src/assets/vanilla-calendar.min.css" rel="stylesheet">
+  <link href="./src/assets/themes/light.min.css" rel="stylesheet">
+  <link href="./src/assets/themes/dark.min.css" rel="stylesheet">
+  <!-- Plugin JS -->
+  <script src="./src/assets/vanilla-calendar.min.js" defer></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css"
     integrity="sha512-DD6Lm09YDHzhW3K4eLJ9Y7sFrBwtCF+KuSWOLYFqKsZ6RX4ifCu9vWqM4R+Uy++aBWe6wD4csgQRzGKp5vP6tg=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <!-- Plugin JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.js" defer></script>
+  <!-- Plugin JS -->
+  <!-- <script src="https://cdn.jsdelivr.net/npm/@uvarov.frontend/vanilla-calendar/build/vanilla-calendar.min.js"
+    defer></script> -->
+      <!-- Plugin JS -->
+  <script src="./vanilla-calendar.min.js" defer></script>
 
-       <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css"
-        integrity="sha512-DD6Lm09YDHzhW3K4eLJ9Y7sFrBwtCF+KuSWOLYFqKsZ6RX4ifCu9vWqM4R+Uy++aBWe6wD4csgQRzGKp5vP6tg=="
-        crossorigin="anonymous" referrerpolicy="no-referrer" />
-  </head>
-  <body>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.css"
+    integrity="sha512-DD6Lm09YDHzhW3K4eLJ9Y7sFrBwtCF+KuSWOLYFqKsZ6RX4ifCu9vWqM4R+Uy++aBWe6wD4csgQRzGKp5vP6tg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 
+<body>
 
+  
+
+  <div id="app">
+    
    
-    <div id="app">
-      
-    </div>
+  </div>
+  
 
+  <script type="module" src="/src/main.ts">
+    
+  </script>
 
-    <script type="module" src="/src/main.ts"></script>
-   
-  </body>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const calendar = new VanillaCalendar('#calendar');
+    calendar.init();
+  });
+</script>
+</body>
+
 </html>

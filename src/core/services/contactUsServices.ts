@@ -9,9 +9,9 @@ class contactUsService {
      * auth:authorization token
      *
      */
-  async contactUs(): Promise<any> {
+  async contactUs(data:any): Promise<any> {
     const response = await this.request
-      .post(`contactus/`, { headers: { 'Content-Type': 'application/json' } })
+      .post(`contactus/`,data, { headers: { 'Content-Type': 'application/json' } })
     return response;
   }
 

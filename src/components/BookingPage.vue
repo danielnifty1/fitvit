@@ -1,13 +1,13 @@
 <script setup lang="ts">
 // import VuePhoneNumberInput from 'vue-phone-number-input';
-import { ref, onMounted } from "vue";
+import { ref } from "vue";
 import { reactive, computed } from "vue";
 import { useRoute } from "vue-router";
 import buttons from "../components/Buttons.vue";
 import { useAuthStore } from "../core/store";
 import useVuelidate from "@vuelidate/core";
 import * as programs from "../static_data/programs.json";
-import initCalender from "../utils/date_helper";
+// import initCalender from "../utils/date_helper";
 
 // initializ route
 const route = useRoute();
@@ -123,9 +123,9 @@ let coach = [
   { icon: "Home", note: "We Begin Your Fitness Challenge" },
 ];
 
-onMounted(() => {
-  initCalender();
-});
+// onMounted(() => {
+//   initCalender();
+// });
 </script>
 
 <template>
@@ -260,12 +260,13 @@ onMounted(() => {
                 >
                   Date
                 </label>
+                
                 <input
                   v-model="bookingInfo.appointment_time"
                   type="text"
                   name="appointment_time"
                   autocomplete="none"
-                  id="calender"
+                  id="calendar"
                   class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 />
                 {{ bookingInfo.appointment_time }}
