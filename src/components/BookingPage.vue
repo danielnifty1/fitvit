@@ -264,6 +264,7 @@ let coach = [
                 <input
                   v-model="bookingInfo.appointment_time"
                   type="text"
+                  placeholder="2023-08-24"
                   name="appointment_time"
                   autocomplete="none"
                   id="calendar"
