@@ -13,7 +13,7 @@ let Links = [
 
   { name: "Programs", link: "programs" },
   // { name: "Custom Coach", link: "book-appointment" },
-  { name: "Contact", link: "contact" },
+  // { name: "Contact", link: "contact" },
 ];
 
 function Menuopen() {
