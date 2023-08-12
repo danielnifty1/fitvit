@@ -28,7 +28,7 @@ initTE({ Collapse, Ripple });
     <div class="grid md:grid-cols-3 md:p-10 p-5 md:space-x-2 md:space-y-0 space-y-5">
       <div class="bg-gray-900 opacity-70 shadow-2xl p-10 pb-20 rounded-1xl">
         <div class="space-y-5">
-          <h4 class="text-2sm text-red-500 font-bold">1 on 1 Coaching:</h4>
+          <h4 class="text-dsm text-red-500 font-bold">1 on 1 Coaching:</h4>
 
           <p class="text-sm text-white text-justify">
             One-on-one coaching is a personalized training approach where I work
@@ -102,6 +102,78 @@ initTE({ Collapse, Ripple });
       </div>
 
       
+    </div>
+
+    
+  </div>
+
+  <div
+    class="grid md:grid-cols-4 gap-6 w-full p-5 md:p-0 justify-center place-content-center"
+  >
+    <h3
+      class="font-Poppins font-bold text-4xl text-center text-white py-10 md:col-start-2 md:col-span-4 md:w-7/12 w-full"
+    >
+     More of <span class="border-b-4 border-red-700 pb-2">Our</span>
+      <span class="text-red-800"> Service </span>
+    </h3>
+
+    <p
+      class="text-center text-white md:col-start-2 md:col-span-4 md:w-7/12 w-full"
+    >
+   Wa are here to guide you on your journey towards achieving optimal health and wellness. lets Go!!
+    </p>
+  </div>
+
+  <div class="md:flex grid w-full px-2 md:px-24 py-8 gap-x-8 gap-y-3">
+    <div
+      class="place-content-center bg-gray-800 md:p-8 p-1 box-border md:w-1/3 w-full"
+    >
+      <div
+        class="place-content-center text-center space-y-8 hover:border-red-700 duration-1000 border-gray-800 border-4 p-"
+      >
+        <span class="fa fa-lock text-red-700 text-6xl text-fold"></span>
+        <h3 class="font-bold text-white text-sm">Nutritional Guidance</h3>
+
+        <p class="text-gray-400">
+          Exercise alone is not enough to achieve your fitness goals. Our expertise extends beyond the gym floor as we provide nutritional guidance tailored to your needs. We educate you on balanced eating, portion control, and making healthier food choices to complement your training regimen.
+        </p>
+
+        <!-- <buttons class="ease-in duration-300"> VIEW GUIDE </buttons> -->
+      </div>
+    </div>
+
+    <div
+      class="place-content-center bg-gray-800 md:p-8 p-1 box-border md:w-1/3 w-full"
+    >
+      <div
+        class="place-content-center text-center space-y-8 hover:border-red-700 duration-1000 border-gray-800 border-4 p- hover:duration-900 hover:ease-in"
+      >
+        <span class="fa fa-lock text-red-700 text-6xl text-fold"></span>
+        <h3 class="font-bold text-white text-sm">Accountability and Support</h3>
+
+        <p class="text-gray-400">
+          Consistency is key to long-term success. As your personal trainer, we hold you accountable for your actions and provide unwavering support throughout your fitness journey. We understand the challenges you may face and are here to celebrate your achievements and motivate you during setbacks
+        </p>
+
+        <!-- <buttons> VIEW GUIDE </buttons> -->
+      </div>
+    </div>
+
+    <div
+      class="place-content-center bg-gray-800 md:p-8 p-1 box-border md:w-1/3 w-full"
+    >
+      <div
+        class="place-content-center text-center space-y-8 hover:border-red-700 duration-1000 border-gray-800 border-4 p- hover:duration-900 hover:ease-in"
+      >
+        <span class="fa fa-lock text-red-700 text-6xl text-fold"></span>
+        <h3 class="font-bold text-white text-sm">Continuous Progress Evaluation</h3>
+
+        <p class="text-gray-400">
+          Your progress is meticulously tracked through various assessments, such as body measurements, strength tests, and endurance assessments. Regular evaluations allow us to fine-tune your program and ensure that you consistently progress towards your goals.
+        </p>
+
+        <!-- <buttons> VIEW SCHEDULE </buttons> -->
+      </div>
     </div>
   </div>
 </template>
