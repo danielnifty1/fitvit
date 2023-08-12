@@ -99,7 +99,7 @@ We understand that everyone has unique needs and goals, and we tailor our approa
         class="place-content-center text-center space-y-8 hover:border-red-700 duration-1000 border-gray-800 border-4 p-"
       >
         <span class="fa fa-lock text-red-700 text-6xl text-fold"></span>
-        <h3 class="font-bold text-white text-3xl">Nutritional Guidance</h3>
+        <h3 class="font-bold text-white text-sm">Nutritional Guidance</h3>
 
         <p class="text-gray-400">
           Exercise alone is not enough to achieve your fitness goals. Our expertise extends beyond the gym floor as we provide nutritional guidance tailored to your needs. We educate you on balanced eating, portion control, and making healthier food choices to complement your training regimen.
@@ -116,7 +116,7 @@ We understand that everyone has unique needs and goals, and we tailor our approa
         class="place-content-center text-center space-y-8 hover:border-red-700 duration-1000 border-gray-800 border-4 p- hover:duration-900 hover:ease-in"
       >
         <span class="fa fa-lock text-red-700 text-6xl text-fold"></span>
-        <h3 class="font-bold text-white text-3xl">Accountability and Support</h3>
+        <h3 class="font-bold text-white text-sm">Accountability and Support</h3>
 
         <p class="text-gray-400">
           Consistency is key to long-term success. As your personal trainer, we hold you accountable for your actions and provide unwavering support throughout your fitness journey. We understand the challenges you may face and are here to celebrate your achievements and motivate you during setbacks
@@ -133,7 +133,7 @@ We understand that everyone has unique needs and goals, and we tailor our approa
         class="place-content-center text-center space-y-8 hover:border-red-700 duration-1000 border-gray-800 border-4 p- hover:duration-900 hover:ease-in"
       >
         <span class="fa fa-lock text-red-700 text-6xl text-fold"></span>
-        <h3 class="font-bold text-white text-3xl">Continuous Progress Evaluation</h3>
+        <h3 class="font-bold text-white text-sm">Continuous Progress Evaluation</h3>
 
         <p class="text-gray-400">
           Your progress is meticulously tracked through various assessments, such as body measurements, strength tests, and endurance assessments. Regular evaluations allow us to fine-tune your program and ensure that you consistently progress towards your goals.
@@ -158,7 +158,7 @@ We understand that everyone has unique needs and goals, and we tailor our approa
 
       <div class="flex justify-center ">
         <p
-          class="text-center text-white md:col-start-2 md:col-span-4 md:w-4/12 w-full "
+          class="text-center text-sm text-white md:col-start-2 md:col-span-4 md:w-4/12 w-full "
         >
         At VitFit, we offer comprehensive and personalized training programs designed to help you reach your desired outcomes efficiently and safely. Here are some key elements of our approach:
         </p>
@@ -170,14 +170,14 @@ We understand that everyone has unique needs and goals, and we tailor our approa
     >
 
     <div  v-for="link in Links"
-        :key="link.title" class="bg-gray-900 opacity-80  trasiners relative border-4 border-transparent text-center md:p-5  h-[300px] md:h-[350px] space-y-10 hover:border-red-700 duration-1000 hover:border-4 z-10">
+        :key="link.title" class="bg-gray-900 opacity-80  trasiners relative border-4 border-transparent text-center md:p-5  h-[300px] md:h-[360px] space-y-10 hover:border-red-700 duration-1000 hover:border-4 z-10">
       <h2 class="font-bold p-5 text-center text-red-700">{{ link.title }}</h2>
-      <p4 class="text-white">{{ link.message }}</p4>
+      <p4 class="text-white text-sm">{{ link.message }}</p4>
     </div>
     </div>
   </div>
 
-  <div class="w-full p-10">
+  <div class="w-full p-10 hidden">
     <h4 class="text-white text-center w-full text-4xl font-bold">
       OUR <span class="text-red-700">TRAINER</span>
     </h4>
@@ -249,7 +249,7 @@ We understand that everyone has unique needs and goals, and we tailor our approa
         </h4>
 
         <p
-          class="md:p py-5 text-[#f6f6f6] text-cente leading-10 text-1xl w-full"
+          class="md:p py-5 text-[#f6f6f6] text-cente leading-10 text-sm w-full"
         >
           I understand it is not easy to come up with a detailed fitness and
           nutrition plan. This is why my team and I will take the hard work of
@@ -258,9 +258,7 @@ We understand that everyone has unique needs and goals, and we tailor our approa
           and we are here to support and motivate you to reach your goals.
         </p>
 
-        <p class="hover:translate-x-1 duration-300 cursor-pointer font-bold text-red-700">
-          Book a Session <span class="fa fa-arrow-right"></span>
-        </p>
+       
         <img src="/svg/effect-1.svg" class="hover:-translate-y-6 delay-100 duration-1000" />
       </div>
 
@@ -284,7 +282,7 @@ We understand that everyone has unique needs and goals, and we tailor our approa
         </h4>
 
         <p
-          class="py-5 px-5 text-[#f6f6f6] text-cente leading-10 text-1xl w-full md:w-full"
+          class="py-5 px-5 text-[#f6f6f6] text-cente leading-10 text-sm w-full md:w-full"
         >
           Being accountable is one of the most important parts of ones fitness
           journey. We all know life happens and you may lose motivation. This is
@@ -294,22 +292,20 @@ We understand that everyone has unique needs and goals, and we tailor our approa
           our programs to make sure you are accountable at all times
         </p>
 
-        <p class="hover:translate-x-1 duration-300 cursor-pointer px-5 font-bold text-red-700">
-          Book a Session <span class="fa fa-arrow-right"></span>
-        </p>
+       
       </div>
     </div>
   </div>
 
   <div
-    class="w-full grid justify-items-center md:p-40 p-5 space-y-10"
+    class="hidden w-full grid justify-items-center md:p-40 p-5 space-y-10"
     style="
       background-image: linear-gradient(rgba(2, 0, 0, 0.5), rgba(2, 0, 0, 0.5)),
         url(/img/slide-1.jpg);
     "
   >
     <p
-      class="text-center text-white font-bold md:text-4xl text-2xl md:w-7/12 md:leading-[80px] w-full py-5"
+      class="text-center text-white font-bold md:text-sm text-2xl md:w-7/12 md:leading-[80px] w-full py-5"
     >
       Let Me Help You Find The Right Program That Will Meet Your Fitness Goals.
     </p>

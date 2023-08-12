@@ -6,6 +6,7 @@ import { reactive, ref, computed } from "vue";
 import { useAuthStore } from "../core/store/index";
 import useVuelidate from "@vuelidate/core";
 import { required, email, helpers } from "@vuelidate/validators";
+import { useAuth } from "../composables/auth.composable";
 // import { useAuth } from "../composables/auth.composable";
 // instantiate router
 
@@ -54,9 +55,12 @@ const rules = computed(() => {
 const v$ = useVuelidate(rules as any, ClientInfo);
 
 const submitForm = async (): Promise<void> => {
+  
   // check if form is formattted correctly
   const isFormCorrect = await v$.value.$validate();
+
   if (isFormCorrect == true) {
+    alert("res");
     disabled.value = true;
     const Clientdata = {
       name: v$.value.name.$model as string,
@@ -71,33 +75,37 @@ const submitForm = async (): Promise<void> => {
 
     };
     loading.value = true;
-    const data = await (store.contactUs(Clientdata), loading);
-    // if (data) {
-    //   disabled.value = false;
+      const [error, success]  = await useAuth(
+        
+      store.contactUs(Clientdata),
+       loading
+      );
+    if (success || error) {
+      disabled.value = false;
 
-    //   // console.log(error)
-    // }
-    // if (success.value !== "") {
-    //   //   redirect to the signin page
-    //   setTimeout(() => {
+      // console.log(error)
+    }
+    if (success.value !== "") {
+      //   redirect to the signin page
+      setTimeout(() => {
 
-    //     let prev =router.options.history.state.back
-    //      prev !== "/signup" ? router.go(-1):router.replace("/home");
-    //   }, 2000);
-    // }
+        // let prev =router.options.history.state.back
+        //  prev !== "/signup" ? router.go(-1):router.replace("/home");
+      }, 2000);
+    }
 
-    // if (
-    //   error &&
-    //   error.value.data &&
-    //   error.value.data.Error === "Your email isnt verified yet"
-    // ) 
+    if (
+      error &&
+      error.value.data &&
+      error.value.data.Error === "Your email isnt verified yet"
+    ) 
     
-    // {
-    //   setTimeout(() => {
-    //     router.replace("/verify-email");
-    //   }, 4000);
-    // }
- console.log(data);
+    {
+      setTimeout(() => {
+        // router.replace("/verify-email");
+      }, 4000);
+    }
+//  console.log(data);
     // loading.value = isLoading.value;
   }
 };
@@ -157,44 +165,60 @@ const submitForm = async (): Promise<void> => {
         <h3 class="font-bold text-3xl text-gray-400">GET IN TOUCH</h3>
       </div>
 
-      <div class="bg-gray-800 w-12/12 md:w-full ">
+      <div class="bg-gray-800 w-[350px] md:w-full ml-2 md:ml-0 ">
         <form  @submit.prevent="submitForm"
             id="form" class="md:p-10 space-y-10 p-5">
           <div class="grid space-y-1">
             <label class="text-gray-400"
               >Name <span class="text-red-400">*</span></label
             >
-            <input type="text" name="name" />
+            <input  v-model="ClientInfo.name" type="text" name="name" />
+            <div v-if="v$.name.$error" class="text-red-400">
+              {{ "* " + v$.name.$errors[0].$message }}
+            </div>
           </div>
+         
 
-          <div class="md:flex md:space-x-10 space-y-5 md:space-y-0 w-full">
-            <div class="grid w-full">
+          <div class="md:flex md:space-x-1 space-y-5 md:space-y-0 w-full">
+            <div class="grid w-ful]l">
               <label class="text-gray-400"
                 >Email <span class="text-red-400">*</span></label
               >
-              <input type="email" name="name" />
+              <input  v-model="ClientInfo.email" type="email" name="name" />
+             
             </div>
 
-            <div class="grid w-full">
+            <div class="grid w-fll">
               <label class="text-gray-400"
                 >Phone <span class="text-red-400">*</span></label
               >
-              <input type="number" name="name" />
+              <input class="w-full" v-model="ClientInfo.phone" type="number" name="name" />
+            
             </div>
+            
           </div>
+          <div v-if="v$.email.$error" class="text-red-400">
+              {{ "* " + v$.email.$errors[0].$message }}
+            </div>
 
           <div class="grid space-y-1">
             <label class="text-gray-400"
               >Subject <span class="text-red-400">*</span></label
             >
-            <input type="text" name="name" />
+            <input v-model="ClientInfo.subject" type="text" name="name" />
+            <div v-if="v$.subject.$error" class="text-red-400">
+              {{ "* " + v$.subject.$errors[0].$message }}
+            </div>
           </div>
 
           <div class="grid space-y-1">
             <label class="text-gray-400"
               >Message <span class="text-red-400">*</span></label
             >
-            <textarea></textarea>
+            <textarea v-model="ClientInfo.message" name="message"></textarea>
+            <div v-if="v$.message.$error" class="text-red-400">
+              {{ "* " + v$.message.$errors[0].$message }}
+            </div>
           </div>
 
           <button
