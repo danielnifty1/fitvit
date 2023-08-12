@@ -10,7 +10,7 @@ initTE({ Collapse, Ripple });
 </script>
 
 <template>
-  <div  class="w-full bg-fixed bg-center bg-no-repeat bg-cover md:h-auto h-[1600px]"
+  <div  class="w-full bg-fixed bg-center bg-no-repeat bg-cover md:h-auto h-[1600px] space-y-5 "
     style="
       background-image: linear-gradient(rgba(2, 0, 0, 0.5), rgba(2, 0, 0, 0.5)),
         url(/img/bg-programs.jpg);
@@ -25,7 +25,7 @@ initTE({ Collapse, Ripple });
       </p>
     </div>
 
-    <div class="grid grid-cols-3 p-10 space-x-2 ">
+    <div class="grid md:grid-cols-3 md:p-10 p-5 md:space-x-2 md:space-y-0 space-y-5">
       <div class="bg-gray-900 opacity-70 shadow-2xl p-10 pb-20 rounded-1xl">
         <div class="space-y-5">
           <h4 class="text-2sm text-red-500 font-bold">1 on 1 Coaching:</h4>
@@ -68,7 +68,7 @@ initTE({ Collapse, Ripple });
     </div>
 
 
-     <div class="grid grid-cols-3 p-10 space-x-2 ">
+     <div class="grid md:grid-cols-3 p-10 space-x-2  hidden md:inline-flex ">
       <div class="bg-gray-900 opacity-70 shadow-2xl p-10 pb-20 rounded-1xl">
         <div class="space-y-5">
           <h4 class="text-2sm text-red-500 font-bold">Nutritional Plan:</h4>
