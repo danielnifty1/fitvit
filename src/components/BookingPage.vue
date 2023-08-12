@@ -118,7 +118,7 @@ let coach = [
   },
   {
     icon: "Home",
-    note: "I Tell You The Best Workout Plan That Will Fit Your Goals",
+    note: "I Will Tell You The Best Workout Plan That Will Fit Your Goals",
   },
   { icon: "Home", note: "We Begin Your Fitness Challenge" },
 ];
