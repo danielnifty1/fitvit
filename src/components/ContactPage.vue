@@ -152,14 +152,14 @@ const submitForm = async (): Promise<void> => {
       </div>
     </div>
 
-    <div class="p-10 space-y-10">
+    <div class="md:p-10 space-y-10">
       <div>
         <h3 class="font-bold text-3xl text-gray-400">GET IN TOUCH</h3>
       </div>
 
-      <div class="bg-gray-800">
+      <div class="bg-gray-800 w-12/12 md:w-full ">
         <form  @submit.prevent="submitForm"
-            id="form" class="p-10 space-y-10">
+            id="form" class="md:p-10 space-y-10 p-5">
           <div class="grid space-y-1">
             <label class="text-gray-400"
               >Name <span class="text-red-400">*</span></label
@@ -167,7 +167,7 @@ const submitForm = async (): Promise<void> => {
             <input type="text" name="name" />
           </div>
 
-          <div class="flex space-x-10 w-full">
+          <div class="md:flex md:space-x-10 space-y-5 md:space-y-0 w-full">
             <div class="grid w-full">
               <label class="text-gray-400"
                 >Email <span class="text-red-400">*</span></label

@@ -269,7 +269,7 @@ let coach = [
                   id="calendar"
                   class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
                 />
-                {{ bookingInfo.appointment_time }}
+                <!-- {{ bookingInfo.appointment_time }} -->
 
                 <!-- <div v-if="v$.appointment_time.$error" class="text-red-400">
                   {{ "* " + v$.appointment_time.$errors[0].$message }}
@@ -283,7 +283,7 @@ let coach = [
               v-if="authStore.isAuthenticated"
               class="hover:shadow-form w-full rounded-md bg-[#6A64F1] hover:bg-[#423aef] duration-700 py-3 px-8 text-center text-base font-semibold text-white outline-none"
             >
-              Book Appointment 
+              Book Appointment <i v-if="loading" class="fa fa-spin fa-spinner"></i>
             </button>
 
             <div
