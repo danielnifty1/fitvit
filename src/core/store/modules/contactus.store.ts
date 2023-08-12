@@ -3,13 +3,17 @@ import contactUsService from "../../services/contactUsServices";
 // import getBalance from "../../../helpers/getBalance";
 
 // update account balance
+import {
 
+  ContactUsInterface
+   
+} from "../../../interfaces/auth.interface";
 const ContactUs = defineStore("contact", {
 
   actions: {
-    async contactUs(): Promise<any> {
+    async contactUs(data:ContactUsInterface): Promise<any> {
       try {
-        const response = await contactUsService.contactUs();
+        const response = await contactUsService.contactUs(data);
         if (response.data) {
           return await Promise.resolve(response);
         } else if (response.response) {
