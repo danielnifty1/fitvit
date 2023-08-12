@@ -17,15 +17,15 @@ export interface Register {
     appointment_time: any;
   }
 
-  // export interface PayForappointment {
-  //   session_type: string;
-  //   duration: number;
-  //   title: string;
-  //   appointment_time: any;
-  //   total_duration:number;
-  //   total_amount:number;
+  export interface ContactUsInterface {
+    name: string;
+    email: string;
+    phone: any;
+    subject: string;
+    message:string;
+    
 
-  // }
+  }
   export interface Login {
     email: string;
     password: string;

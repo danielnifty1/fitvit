@@ -1,6 +1,8 @@
 import { defineStore } from "pinia";
 
 import authService from "../../services/authService";
+import contactService from "../../services/contactUsServices";
+
 import { storeItem } from "../../utils/storage.helper";
 import {
   Register,
@@ -9,7 +11,8 @@ import {
   ForgotPasswordComplete,
   ChangePassword,
   Bookappointment,
-  // PayForappointment
+  ContactUsInterface
+   
 } from "../../../interfaces/auth.interface";
 import isAuthenticated from "../../../helpers/authenticate";
 
@@ -101,21 +104,21 @@ const authStore = defineStore("auth", {
     },
 
 
-    // // payment
-    // async userPayForAppointment(paymentData: PayForappointment): Promise<any> {
-    //   try {
-    //     const response = await authService.PayForappointment(paymentData);
-    //     if (response.paymentData) {
-    //       return await Promise.resolve(response);
-    //     } else if (response.response) {
-    //       return await Promise.reject(response.response);
-    //     } else {
-    //       return await Promise.reject(response.message);
-    //     }
-    //   } catch (error: any) {
-    //     return await Promise.reject(error);
-    //   }
-    // },
+    // payment
+    async contactUs(data: ContactUsInterface): Promise<any> {
+      try {
+        const response = await contactService.contactUs(data);
+        if (response.data) {
+          return await Promise.resolve(response);
+        } else if (response.response) {
+          return await Promise.reject(response.response);
+        } else {
+          return await Promise.reject(response.message);
+        }
+      } catch (error: any) {
+        return await Promise.reject(error);
+      }
+    },
     
     async userForgotPasswordInit(data: ForgotPasswordInit): Promise<any> {
       try {

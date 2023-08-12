@@ -14,8 +14,9 @@ export const useAuth = (store: any, loading: { value: boolean }): any => {
   loading.value = true;
   return store
     .then((res: any) => {
-      console.log(res)
-      success.value = res.data.message;
+      // console.log(res.data.data.hosted_url)
+      success.value = res.data.data.hosted_url
+      ;
       data.value = res.data.data;
      
       // set the loading notice to false

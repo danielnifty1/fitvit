@@ -84,20 +84,6 @@ const submitForm = async (): Promise<void> => {
       total_amount:total_amount
     };
 
-    // payment data
-    // const paymentData = {
-    //   session_type: v$.value.session_type.$model as string,
-
-    //   duration: parseInt(v$.value.duration.$model),
-    //   title: aboutTheProgram.value[0].title,
-    //   appointment_time: dateObj,
-  
-    //   total_duration:total_Duration,
-    //   total_amount:total_amount
-      
-    // };
-
-
 
     // console.log(paymentData); 
     const [error, success] = await useAuth(
@@ -105,19 +91,19 @@ const submitForm = async (): Promise<void> => {
       
       loading
     );
-    console.log("return data is "+ success)
     if (success || error ) {
       disabled.value = false;
       console.log(error);
     }
     if (success.value !== "") {
-      console.log(success)
+    console.log("return data is "+  success.value)
+    window.location.href = success.value;
+      
       // store.userPayForAppointment(paymentData),
 
       //   redirect to the signin page
       setTimeout(() => {
         // store.userPayForAppointment(paymentData);
-        // window.location.href = "/verify-email";
       }, 3000);
     }
   }
