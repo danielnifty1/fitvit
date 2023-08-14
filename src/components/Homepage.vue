@@ -80,14 +80,15 @@ We understand that everyone has unique needs and goals, and we tailor our approa
       <h3
         class="font-Poppins font-bold text-4xl text-center text-white py-10 md:col-start-2 md:col-span-4 md:w-7/12 w-full"
       >
-        Welcome <span class="border-b-4 border-red-700 pb-2">To</span>
-        <span class="text-red-800"> VitFit </span>
+       
+       What <span class="border-b-4 border-red-700 pb-2">We</span>
+        <span class="text-red-800"> Offer </span>
       </h3>
 
       <p
         class="text-center text-white md:col-start-2 md:col-span-4 md:w-7/12 w-full"
       >
-    Wa are here to guide you on your journey towards achieving optimal health and wellness. lets Go!!
+      At VitFit, we offer comprehensive and personalized training programs designed to help you reach your desired outcomes efficiently and safely. Here are some key elements of our approach
       </p>
     </div>
 
@@ -152,15 +153,15 @@ We understand that everyone has unique needs and goals, and we tailor our approa
     "
   >
     <div class="md:col-start-2 md:col-span-3 w-full  ">
-      <h2 class="font-Poppins text-4xl text-center text-white pb-2 py-10">
-        What We Offer
+      <h2 class="font-Poppins text-4xl text-center text-white pb-2 py-10  mb-10">
+        Our <span class="border-b-4 border-red-700 pb-2">Additional</span> Services
       </h2>
 
       <div class="flex justify-center ">
         <p
           class="text-center text-sm text-white md:col-start-2 md:col-span-4 md:w-4/12 w-full "
         >
-        At VitFit, we offer comprehensive and personalized training programs designed to help you reach your desired outcomes efficiently and safely. Here are some key elements of our approach:
+        Wa are here to guide you on your journey towards achieving optimal health and wellness. lets Go!!
         </p>
       </div>
     </div>
